@@ -29,8 +29,11 @@ const renderNewSentence = () => {
               <p>
                 ${data[number].sentence}
               </p>
-              <i id=${data[number].id} onclick="openTranslate(this.id)" class="fa-solid fa-chevron-down open-icon px-2 mx-3"></i>
-              <i id=${data[number].id} onclick="openTranslate(this.id)" class="fa-solid fa-chevron-up close-icon px-2 mx-3 d-none"></i>
+              <div>
+                <i id=${data[number].id} onclick="openTranslate(this.id)" class="fa-solid fa-chevron-down open-icon px-2 mx-3"></i>
+                <i id=${data[number].id} onclick="openTranslate(this.id)" class="fa-solid fa-chevron-up close-icon px-2 mx-3 d-none"></i>
+                <i id=${data[number].id} onclick="readText(this.id)" class="fa-solid fa-volume-high read-icon p-3 mx-3"></i>
+              </div>
             </div>
             <p id="trl${data[number].id}" class="translate px-2 py-3">
               ${data[number].translate}
@@ -67,3 +70,12 @@ const openTranslate = (id) => {
 renderNewSentence();
 /* This event get a new sentence */
 getSentenceButton.addEventListener("click", renderNewSentence);
+
+function readText(id) {
+  var textToRead = document.getElementById(`trl${id}`).textContent;
+
+  var synth = window.speechSynthesis;
+  var utterThis = new SpeechSynthesisUtterance(textToRead);
+
+  synth.speak(utterThis);
+}
