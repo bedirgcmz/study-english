@@ -30,9 +30,9 @@ const renderNewSentence = () => {
                 ${data[number].sentence}
               </p>
               <div>
-                <i id=${data[number].id} onclick="openTranslate(this.id)" class="fa-solid fa-chevron-down open-icon px-2 mx-3"></i>
-                <i id=${data[number].id} onclick="openTranslate(this.id)" class="fa-solid fa-chevron-up close-icon px-2 mx-3 d-none"></i>
-                <i id=${data[number].id} onclick="readText(this.id)" class="fa-solid fa-volume-high read-icon p-3 mx-3"></i>
+                <i id=${data[number].id} onclick="openTranslate(this.id)" class="fa-solid fa-chevron-down open-icon px-2 mx-1"></i>
+                <i id=${data[number].id} onclick="openTranslate(this.id)" class="fa-solid fa-chevron-up close-icon px-2 mx-1 d-none"></i>
+                <i id=${data[number].id} onclick="readText(this.id)" class="fa-solid fa-volume-high read-icon p-2 mx-1"></i>
               </div>
             </div>
             <p id="trl${data[number].id}" class="translate px-2 py-3">
