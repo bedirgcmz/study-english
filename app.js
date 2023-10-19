@@ -1,6 +1,9 @@
 /* DOM elements */
 const renderContainer = document.getElementById("render-container");
 const getSentenceButton = document.getElementById("get-sentence");
+const prevButton = document.getElementById("prev-sentence");
+const nextButton = document.getElementById("next-sentence");
+
 /* degiskenler */
 let data;
 let number = 0;
@@ -18,10 +21,12 @@ async function fetchData() {
 fetchData()
   .then((jsonData) => {
     data = jsonData;
+    /* Page loadind firstly add a sentence */
+    renderNewSentence(0);
   })
   .catch((error) => console.error("Hata:", error));
 
-const renderNewSentence = () => {
+const renderNewSentence = (number) => {
   data &&
     (renderContainer.innerHTML = `
         <div class="sentence-container">
@@ -29,7 +34,7 @@ const renderNewSentence = () => {
               <p>
                 ${data[number].sentence}
               </p>
-              <div>
+              <div class="d-flex align-items-center justfy-content-end">
                 <i id=${data[number].id} onclick="openTranslate(this.id)" class="fa-solid fa-chevron-down open-icon px-2 mx-1"></i>
                 <i id=${data[number].id} onclick="openTranslate(this.id)" class="fa-solid fa-chevron-up close-icon px-2 mx-1 d-none"></i>
                 <i id=${data[number].id} onclick="readText(this.id)" class="fa-solid fa-volume-high read-icon p-2 mx-1"></i>
@@ -40,13 +45,6 @@ const renderNewSentence = () => {
             </p>
           </div>
       `);
-  if (data) {
-    if (number < data.length - 1) {
-      number++;
-    } else {
-      number = 0;
-    }
-  }
 };
 const openTranslate = (id) => {
   const targetElement = document.getElementById(`trl${id}`);
@@ -66,10 +64,35 @@ const openTranslate = (id) => {
   }
 };
 
-/* Page loadind firstly add a sentence */
-renderNewSentence();
+/* ileri geri fonksiyonlar */
+
+const getPrevSentence = () => {
+  if (data) {
+    if (number === 0) {
+      number = data.length - 1;
+      renderNewSentence(number);
+    } else {
+      number--;
+      renderNewSentence(number);
+    }
+  }
+};
+
+const getNextSentence = () => {
+  if (data) {
+    if (number < data.length - 1) {
+      number++;
+      renderNewSentence(number);
+    } else {
+      number = 0;
+      renderNewSentence(number);
+    }
+  }
+};
+
 /* This event get a new sentence */
-getSentenceButton.addEventListener("click", renderNewSentence);
+prevButton.addEventListener("click", getPrevSentence);
+nextButton.addEventListener("click", getNextSentence);
 
 function readText(id) {
   var textToRead = document.getElementById(`trl${id}`).textContent;

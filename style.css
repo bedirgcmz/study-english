@@ -49,8 +49,30 @@ header {
   padding: 24px;
   background-color: #ffc107;
 }
+#prev-sentence,
+#next-sentence {
+  font-size: 1.2rem;
+  padding: 5px 20px;
+}
+#get-sentence {
+  max-width: 95%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  color: #fff;
+  border: 2px solid #ffc107;
+  border-radius: 10px;
+  margin-bottom: 24px;
+  cursor: pointer;
+}
+#prev-sentence:hover,
+#next-sentence:hover {
+  color: #ffc107;
+}
 #render-container {
   text-align: start;
+  padding: 0;
+  max-width: 95%;
 }
 .sentence-container {
   border: 2px solid wheat;
@@ -64,18 +86,7 @@ header {
 .translate {
   display: none;
 }
-#get-sentence {
-  color: #fff;
-  display: inline-block;
-  border: 2px solid #ffc107;
-  border-radius: 10px;
-  margin-bottom: 24px;
-  cursor: pointer;
-}
-#get-sentence:hover {
-  color: #ffc107;
-  border: 2px solid #fff;
-}
+
 .open-icon,
 .close-icon {
   background-color: #ffc107;
