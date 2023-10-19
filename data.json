@@ -1,0 +1,72 @@
+[
+  {
+    "id": 1,
+    "sentence": "<W class='brown'>Ek olarak</W>, ben bir takim oyuncusuyum da",
+    "translate": "<W class= 'brown'>Additionly</W>, I am also a team player!",
+    "key_words": ["additionly"],
+    "language": "english"
+  },
+  {
+    "id": 2,
+    "sentence": "<W class='red'>Dürüst olmak gerekirse</W>, <w class='yellow'>şu an</w> üniversitede IT kursu okudu<w class='green'>ğum için</w> <W class='blue'>neredeyse</w> her gün kullanıyorum.",
+    "translate": "<w class='red'>Honestly</w>, I use it <w class='blue'>almost</w> everyday <w class='green'>since</w> I’m <w class='yellow'>currently</w> studying IT course at the university. ",
+    "key_words": ["honestly", "since", "currently"],
+    "language": "english"
+  },
+  {
+    "id": 3,
+    "sentence": "<w class='yellow'>Okul için gereken</w> <w class='purple'>temel</w> ekipman olduğuna inanıyorum. ",
+    "translate": "AdditionlyI believe it is the <w class='purple'>primary</w> equipment <w class='yellow'>needed for school.</w>  ",
+    "key_words": ["JSON", "OpenAI", "örnek"],
+    "language": "english"
+  },
+  {
+    "id": 4,
+    "sentence": "<w class='yellow'>Her</w> kullan<w class='yellow'>dığımda,</w> <w class='purple'>verimlilik</w> <w class='orange'>sağlıyor</w>   . ",
+    "translate": "<w class='yellow'>Whenever</w>  I use it, it <w class='orange'>provides</w> <w class='purple'>efficiency.</w> ",
+    "key_words": ["whenever", "provides", "efficiency"],
+    "language": "english"
+  },
+  {
+    "id": 5,
+    "sentence": "Şuna inanıyorum ki hayatımda <w class='yellow'>çok sayıda</w>  <w class='red'>özel anım (durumum)</w> var.",
+    "translate": "Well, I believe that I have <w class='yellow'>numerous</w> <w class='red'>special occasions</w> in my life. ",
+    "key_words": ["numerous", "occasions"],
+    "language": "english"
+  },
+  {
+    "id": 6,
+    "sentence": "Ama <w class='brown'>en özel anlardan biri</w> düğün günüm.",
+    "translate": "But<w class='brown'>one of the most special ones</w> is during my wedding day.",
+    "key_words": ["numerous", "occasions"],
+    "language": "english"
+  },
+  {
+    "id": 7,
+    "sentence": "<w class='red'>Yaklaşık</w> 100 kişinin <w class='yellow'>ağırlanabileceği</w> geniş bir etkinlik salonunda <w class='gray'>gerçekleştirildi.</w> ",
+    "translate": "It was <w class='gray'>held</w> in a large function hall which <w class='yellow'>could accommodate</w> <w class='red'>approximately</w> 100 people.",
+    "key_words": ["held", "accommodate", "approximately"],
+    "language": "english"
+  },
+  {
+    "id": 8,
+    "sentence": "<w class='green'>Üstelik</w> Türk kültürün<w class='red'>de</w> tipik bir geleneksel düğün töreniydi.  ",
+    "translate": "<w class='green'>What's more</w>, it was a typical traditional wedding ceremony <w class='red'>among</w> Turkish culture.",
+    "key_words": ["numerous", "occasions"],
+    "language": "english"
+  },
+  {
+    "id": 9,
+    "sentence": "<w class='gray'>Aslında</w>  yemek Türk kültürünün büyük bir parçası, bu yüzden <w class='green'>enfes</w>  yemekler hazırladık. ",
+    "translate": "<w class='gray'>Indeed</w> , food is a big part of Turkish culture, so we prepared <w class='green'>scrumptious</w>  food. ",
+    "key_words": ["held", "accommodate", "approximately"],
+    "language": "english"
+  },
+  {
+    "id": 9,
+    "sentence": "Kendimi çok mutlu hissettim ama <w class='gray'>aynı zamanda</w> iyi organize edilmiş bir etkinlik yapmayı gerçekten istediğim <w class='red'>için</w> <w class='yellow'>biraz endişeliydim.</w>",
+    "translate": "I felt so happy but <w class='gray'>at the same time</w> <w class='red'>I was a bit anxious</w> <w class='yellow'>since</w> I really wanted to have a well-organized event.",
+    "key_words": ["held", "accommodate", "approximately"],
+    "language": "english"
+  }
+]
