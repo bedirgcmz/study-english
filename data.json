@@ -16,7 +16,7 @@
   {
     "id": 3,
     "sentence": "<w class='yellow'>Okul için gereken</w> <w class='purple'>temel</w> ekipman olduğuna inanıyorum. ",
-    "translate": "AdditionlyI believe it is the <w class='purple'>primary</w> equipment <w class='yellow'>needed for school.</w>  ",
+    "translate": "I believe it is the <w class='purple'>primary</w> equipment <w class='yellow'>needed for school.</w>  ",
     "key_words": ["JSON", "OpenAI", "örnek"],
     "language": "english"
   },
