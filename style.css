@@ -43,18 +43,35 @@ body {
   background-color: #1d1d1df7;
   text-align: center;
 }
+hr {
+  border: 3px solid #fff;
+  border-radius: 10px;
+  width: 60%;
+  margin: 4rem auto;
+}
 header {
   color: rgb(20, 18, 18);
   text-align: center;
   padding: 24px;
   background-color: #ffc107;
 }
+.to-learn-img {
+  width: 36px;
+  height: 30px;
+}
+.learned-img {
+  width: 50px;
+  height: 36px;
+}
 #prev-sentence,
-#next-sentence {
+#next-sentence,
+#prev-sentence-learned,
+#next-sentence-learned {
   font-size: 1.2rem;
   padding: 5px 20px;
 }
-#get-sentence {
+#get-sentence,
+#get-sentence-learned {
   max-width: 95%;
   display: flex;
   justify-content: space-between;
@@ -66,15 +83,19 @@ header {
   cursor: pointer;
 }
 #prev-sentence:hover,
-#next-sentence:hover {
+#next-sentence:hover,
+#prev-sentence-learned:hover,
+#next-sentence-learned:hover {
   color: #ffc107;
 }
-#render-container {
+#render-container,
+#render-container-learned {
   text-align: start;
   padding: 0;
   max-width: 95%;
 }
-.sentence-container {
+.sentence-container,
+.sentence-container-learned {
   border: 2px solid wheat;
   margin-bottom: 12px;
 }
@@ -88,7 +109,9 @@ header {
 }
 
 .open-icon,
-.close-icon {
+.close-icon,
+.open-icon-learned,
+.close-icon-learned {
   background-color: #ffc107;
   color: black;
   width: 45px;
@@ -99,11 +122,14 @@ header {
   /* margin-top: 10px; */
 }
 .open-icon:hover,
-.close-icon:hover {
+.close-icon:hover,
+.open-icon-learned:hover,
+.close-icon-learned:hover {
   background-color: #eaeaeb;
   color: #b400b2;
 }
-.read-icon {
+.read-icon,
+.read-icon-learned {
   border: 1px solid #ffc107;
   border-radius: 7px;
   width: 45px;
@@ -112,6 +138,7 @@ header {
   text-align: center;
   /* margin-top: 10px; */
 }
-.read-icon:hover {
+.read-icon:hover,
+.read-icon-learned:hover {
   color: #37cf37;
 }

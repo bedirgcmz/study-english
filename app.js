@@ -7,6 +7,7 @@ const nextButton = document.getElementById("next-sentence");
 /* degiskenler */
 let data;
 let number = 0;
+let ToLearnData;
 
 async function fetchData() {
   try {
@@ -21,27 +22,32 @@ async function fetchData() {
 fetchData()
   .then((jsonData) => {
     data = jsonData;
+    ToLearnData = data && data.filter((sentence) => sentence.state === false);
     /* Page loadind firstly add a sentence */
     renderNewSentence(0);
   })
   .catch((error) => console.error("Hata:", error));
 
+ToLearnData = data && data.filter((sentence) => sentence.state === false);
+
+console.log(ToLearnData);
+
 const renderNewSentence = (number) => {
-  data &&
+  ToLearnData &&
     (renderContainer.innerHTML = `
         <div class="sentence-container">
             <div class="sentences-and-icon px-2 my-3">
               <p>
-                ${data[number].sentence}
+                ${ToLearnData[number].sentence}
               </p>
               <div class="d-flex align-items-center justfy-content-end">
-                <i id=${data[number].id} onclick="openTranslate(this.id)" class="fa-solid fa-chevron-down open-icon px-2 mx-1"></i>
-                <i id=${data[number].id} onclick="openTranslate(this.id)" class="fa-solid fa-chevron-up close-icon px-2 mx-1 d-none"></i>
-                <i id=${data[number].id} onclick="readText(this.id)" class="fa-solid fa-volume-high read-icon p-2 mx-1"></i>
+                <i id=${ToLearnData[number].id} onclick="openTranslate(this.id)" class="fa-solid fa-chevron-down open-icon px-2 mx-1"></i>
+                <i id=${ToLearnData[number].id} onclick="openTranslate(this.id)" class="fa-solid fa-chevron-up close-icon px-2 mx-1 d-none"></i>
+                <i id=${ToLearnData[number].id} onclick="readText(this.id)" class="fa-solid fa-volume-high read-icon p-2 mx-1"></i>
               </div>
             </div>
-            <p id="trl${data[number].id}" class="translate px-2 py-3">
-              ${data[number].translate}
+            <p id="trl${ToLearnData[number].id}" class="translate px-2 py-3">
+              ${ToLearnData[number].translate}
             </p>
           </div>
       `);
@@ -67,9 +73,9 @@ const openTranslate = (id) => {
 /* ileri geri fonksiyonlar */
 
 const getPrevSentence = () => {
-  if (data) {
+  if (ToLearnData) {
     if (number === 0) {
-      number = data.length - 1;
+      number = ToLearnData.length - 1;
       renderNewSentence(number);
     } else {
       number--;
@@ -79,8 +85,8 @@ const getPrevSentence = () => {
 };
 
 const getNextSentence = () => {
-  if (data) {
-    if (number < data.length - 1) {
+  if (ToLearnData) {
+    if (number < ToLearnData.length - 1) {
       number++;
       renderNewSentence(number);
     } else {
@@ -94,6 +100,7 @@ const getNextSentence = () => {
 prevButton.addEventListener("click", getPrevSentence);
 nextButton.addEventListener("click", getNextSentence);
 
+/* Read text function */
 function readText(id) {
   var textToRead = document.getElementById(`trl${id}`).textContent;
 
