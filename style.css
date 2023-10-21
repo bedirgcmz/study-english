@@ -4,37 +4,7 @@
   padding: 0;
   box-sizing: border-box;
 }
-.yellow {
-  color: #ebeb63;
-}
 
-.green {
-  color: #2bd92b;
-}
-
-.blue {
-  color: #3b68ee;
-}
-
-.red {
-  color: #ef5d5d;
-}
-
-.purple {
-  color: #d385fb;
-}
-
-.orange {
-  color: #ff6f00;
-}
-
-.brown {
-  color: #efb48a;
-}
-
-.gray {
-  color: #8a8989;
-}
 html {
   min-height: 100vh;
 }
@@ -49,12 +19,7 @@ hr {
   width: 60%;
   margin: 4rem auto;
 }
-header {
-  color: rgb(20, 18, 18);
-  text-align: center;
-  padding: 24px;
-  background-color: #ffc107;
-}
+
 .to-learn-img {
   width: 36px;
   height: 30px;
@@ -81,6 +46,7 @@ header {
   border-radius: 10px;
   margin-bottom: 24px;
   cursor: pointer;
+  padding: 0;
 }
 #prev-sentence:hover,
 #next-sentence:hover,
@@ -97,12 +63,13 @@ header {
 .sentence-container,
 .sentence-container-learned {
   border: 2px solid wheat;
+  border-radius: 5px;
   margin-bottom: 12px;
 }
 .sentences-and-icon {
   display: flex;
   justify-content: space-between;
-  padding: 16px;
+  padding: 5px 8px;
 }
 .translate {
   display: none;
@@ -114,9 +81,9 @@ header {
 .close-icon-learned {
   background-color: #ffc107;
   color: black;
-  width: 45px;
-  height: 30px;
-  line-height: 30px;
+  width: 38px;
+  height: 27px;
+  line-height: 27px;
   text-align: center;
   border-radius: 5px;
   /* margin-top: 10px; */
@@ -131,14 +98,35 @@ header {
 .read-icon,
 .read-icon-learned {
   border: 1px solid #ffc107;
-  border-radius: 7px;
-  width: 45px;
-  height: 30px;
-  line-height: 12px;
+  border-radius: 5px;
+  width: 40px;
+  height: 27px;
+  line-height: 11px;
   text-align: center;
   /* margin-top: 10px; */
 }
 .read-icon:hover,
 .read-icon-learned:hover {
   color: #37cf37;
+}
+.learned-icon {
+  color: #02a217;
+  font-size: 1.5rem;
+  border-radius: 5px;
+  width: 39px;
+  height: 26px;
+  line-height: 26px;
+  text-align: center;
+  border: 1px solid white;
+}
+.unlearned-icon {
+  color: #ffffff;
+  font-size: 1.5rem;
+  border-radius: 5px;
+  width: 39px;
+  height: 26px;
+  line-height: 26px;
+  text-align: center;
+  background-color: #e21b0d;
+  border: 1px solid white;
 }

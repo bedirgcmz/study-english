@@ -17,11 +17,35 @@
       crossorigin="anonymous"
     />
     <link rel="stylesheet" href="./style.css" />
+    <link rel="stylesheet" href="./navigasyon.css" />
+    <link rel="stylesheet" href="./colors.css" />
     <title>Study English</title>
   </head>
   <body>
     <header class="mb-3">
       <h1>Study English</h1>
+      <nav class="navbar">
+        <ul class="d-flex justify-content-center align-items-center px-3">
+          <li class="mx-2">
+            <a id="home" href="index.html" class="nav-link learn-eentences"
+              >Learn Sentences</a
+            >
+          </li>
+          <li class="mx-2">
+            <a
+              id="see-all"
+              href="all-sentence.html"
+              class="nav-link all-sentences"
+              >All Sentences</a
+            >
+          </li>
+          <li class="mx-2">
+            <a id="add-new" href="add-new.html" class="nav-link add-sentences"
+              >Add Sentences</a
+            >
+          </li>
+        </ul>
+      </nav>
     </header>
     <div class="header-one text-center d-flex justify-content-center">
       <h2 class="text-center text-white">Words to learn</h2>
@@ -31,7 +55,7 @@
         alt=""
       />
     </div>
-    <section id="get-sentence" class="p-2 container">
+    <section id="get-sentence" class="container">
       <span id="prev-sentence" class=""
         ><i class="fa-solid fa-backward-step px-3"></i>Prev</span
       >
@@ -42,7 +66,12 @@
     <section id="render-container" class="container text-white">
       <!-- Sentences to learn rendered here-->
     </section>
-    <hr class="my-5" />
+    <p class="text-center text-white p-2">
+      Don't give up! You have
+      <span id="to-learn-words-number" class="text-warning"></span> words to
+      learn
+    </p>
+    <hr class="my-4" />
     <!-- Learned Sentences-->
     <div class="header-one text-center d-flex justify-content-center">
       <h2 class="text-center text-white">Learned Sentences</h2>
@@ -52,7 +81,7 @@
         alt=""
       />
     </div>
-    <section id="get-sentence-learned" class="p-2 container">
+    <section id="get-sentence-learned" class="container">
       <span id="prev-sentence-learned" class=""
         ><i class="fa-solid fa-backward-step px-3"></i>Prev</span
       >
@@ -63,6 +92,11 @@
     <section id="render-container-learned" class="container text-white">
       <!-- Learned Sentences rendered here-->
     </section>
+    <p class="text-center text-white p-2">
+      You have learned
+      <span id="learned-words-number" class="text-warning"></span> words.
+    </p>
+    <script src="./nav-active.js"></script>
     <script src="./app.js"></script>
     <script src="./app-2.js"></script>
     <script

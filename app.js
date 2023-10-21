@@ -3,11 +3,14 @@ const renderContainer = document.getElementById("render-container");
 const getSentenceButton = document.getElementById("get-sentence");
 const prevButton = document.getElementById("prev-sentence");
 const nextButton = document.getElementById("next-sentence");
+const toLearnWordsNumber = document.getElementById("to-learn-words-number");
+const learnedWordsNumber = document.getElementById("learned-words-number");
 
 /* degiskenler */
 let data;
 let number = 0;
-let ToLearnData;
+let toLearnData;
+let learnedData;
 
 async function fetchData() {
   try {
@@ -21,37 +24,60 @@ async function fetchData() {
 
 fetchData()
   .then((jsonData) => {
-    data = jsonData;
-    ToLearnData = data && data.filter((sentence) => sentence.state === false);
+    // data = jsonData;
+    if (localStorage.getItem("allSentencesData") === null) {
+      jsonData && setLocalStorage("allSentencesData", jsonData);
+    }
+    // setLocalStorage("allSentencesData", jsonData);
+    data = getLocalStorage("allSentencesData");
+    toLearnData = data && data.filter((sentence) => sentence.state === false);
+    toLearnWordsNumber.innerText = toLearnData.length;
+
     /* Page loadind firstly add a sentence */
     renderNewSentence(0);
   })
   .catch((error) => console.error("Hata:", error));
 
-ToLearnData = data && data.filter((sentence) => sentence.state === false);
-
-console.log(ToLearnData);
+if (toLearnData) {
+}
 
 const renderNewSentence = (number) => {
-  ToLearnData &&
-    (renderContainer.innerHTML = `
+  if (toLearnData.length > 0) {
+    toLearnData &&
+      (renderContainer.innerHTML = `
+          <div class="sentence-container">
+              <div class="sentences-and-icon my-1">
+                <p>
+                  ${toLearnData[number].sentence}
+                </p>
+                <div class="d-flex flex-column align-items-center justfy-content-end">
+                  <i id=${toLearnData[number].id} onclick="openTranslate(this.id)" class="fa-solid fa-chevron-down open-icon px-2 mx-1 mb-2"></i>
+                  <i id=${toLearnData[number].id} onclick="openTranslate(this.id)" class="fa-solid fa-chevron-up close-icon px-2 mx-1 d-none mb-2"></i>
+                  <i id=${toLearnData[number].id} onclick="readText(this.id)" class="fa-solid fa-volume-high read-icon p-2 mx-1 mb-2"></i>
+                  <i id=${toLearnData[number].id} onclick="learnedSentence(${toLearnData[number].id})" class="fa-solid fa-check learned-icon"></i>
+                </div>
+              </div>
+              <p id="trl${toLearnData[number].id}" class="translate px-2 py-3">
+                ${toLearnData[number].translate}
+              </p>
+            </div>
+        `);
+  } else {
+    runOutOfWords();
+  }
+};
+
+const runOutOfWords = () => {
+  renderContainer.innerHTML = `
         <div class="sentence-container">
             <div class="sentences-and-icon px-2 my-3">
               <p>
-                ${ToLearnData[number].sentence}
-              </p>
-              <div class="d-flex align-items-center justfy-content-end">
-                <i id=${ToLearnData[number].id} onclick="openTranslate(this.id)" class="fa-solid fa-chevron-down open-icon px-2 mx-1"></i>
-                <i id=${ToLearnData[number].id} onclick="openTranslate(this.id)" class="fa-solid fa-chevron-up close-icon px-2 mx-1 d-none"></i>
-                <i id=${ToLearnData[number].id} onclick="readText(this.id)" class="fa-solid fa-volume-high read-icon p-2 mx-1"></i>
-              </div>
-            </div>
-            <p id="trl${ToLearnData[number].id}" class="translate px-2 py-3">
-              ${ToLearnData[number].translate}
-            </p>
+                Well Done! You run out of to learn sentences.
+              </p>             
           </div>
-      `);
+      `;
 };
+
 const openTranslate = (id) => {
   const targetElement = document.getElementById(`trl${id}`);
   const openIcon = document.getElementById(id);
@@ -73,9 +99,9 @@ const openTranslate = (id) => {
 /* ileri geri fonksiyonlar */
 
 const getPrevSentence = () => {
-  if (ToLearnData) {
+  if (toLearnData) {
     if (number === 0) {
-      number = ToLearnData.length - 1;
+      number = toLearnData.length - 1;
       renderNewSentence(number);
     } else {
       number--;
@@ -85,8 +111,8 @@ const getPrevSentence = () => {
 };
 
 const getNextSentence = () => {
-  if (ToLearnData) {
-    if (number < ToLearnData.length - 1) {
+  if (toLearnData) {
+    if (number < toLearnData.length - 1) {
       number++;
       renderNewSentence(number);
     } else {
@@ -109,3 +135,51 @@ function readText(id) {
 
   synth.speak(utterThis);
 }
+
+/**
+ * LocalStorage add and undo player list functions
+ */
+const setLocalStorage = (pStringKey, pArrar) => {
+  localStorage.setItem(pStringKey, JSON.stringify(pArrar));
+};
+const getLocalStorage = (pStringKey) => {
+  return JSON.parse(localStorage.getItem(pStringKey));
+};
+
+/*If there is no array in localstorage, it will be thrown there first,
+It will be rendered later. If there is an array, it will be rendered directly.*/
+if (localStorage.getItem("allSentencesData") === null) {
+  data && setLocalStorage("allSentencesData", data);
+}
+
+/* Move sentence to learned content */
+const learnedSentence = (pId) => {
+  const fromLocalStrangeData = getLocalStorage("allSentencesData");
+
+  // Gelen datayı 'pId' ile yakalamak ve 'state' değerini true olarak değiştirmek
+  const updatedData = fromLocalStrangeData.map((sentence) => {
+    if (sentence.id === pId) {
+      return {
+        ...sentence,
+        state: true,
+      };
+    }
+    return sentence;
+  });
+
+  // Güncel objeyi 'data' içerisine yüklemek
+  data = updatedData;
+  toLearnData = data && data.filter((sentence) => sentence.state === false);
+  learnedData = data && data.filter((sentence) => sentence.state === true);
+  toLearnWordsNumber.innerText = toLearnData.length;
+  learnedWordsNumber.innerText = learnedData.length;
+
+  // Yeni data'yı localStorage'a atmak
+  setLocalStorage("allSentencesData", updatedData);
+  if (toLearnData.length > 0) {
+    renderNewSentence(0);
+    renderNewSentenceLearned(0);
+  } else {
+    runOutOfWords();
+  }
+};
