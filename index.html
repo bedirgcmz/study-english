@@ -19,15 +19,16 @@
     <link rel="stylesheet" href="./style.css" />
     <link rel="stylesheet" href="./navigasyon.css" />
     <link rel="stylesheet" href="./colors.css" />
+    <link rel="stylesheet" href="./footer.css" />
     <title>Study English</title>
   </head>
   <body>
-    <header class="mb-3">
+    <header>
       <h1>Study English</h1>
       <nav class="navbar">
         <ul class="d-flex justify-content-center align-items-center px-3">
           <li class="mx-2">
-            <a id="home" href="index.html" class="nav-link learn-eentences"
+            <a id="home" href="index.html" class="nav-link learn-sentences"
               >Learn Sentences</a
             >
           </li>
@@ -47,55 +48,78 @@
         </ul>
       </nav>
     </header>
-    <div class="header-one text-center d-flex justify-content-center">
-      <h2 class="text-center text-white">Words to learn</h2>
-      <img
-        class="mx-3 to-learn-img"
-        src="https://media2.giphy.com/media/tVhJw24Gv8FGGlnjDN/giphy.gif"
-        alt=""
-      />
-    </div>
-    <section id="get-sentence" class="container">
-      <span id="prev-sentence" class=""
-        ><i class="fa-solid fa-backward-step px-3"></i>Prev</span
-      >
-      <span id="next-sentence" class=""
-        >Next <i class="fa-solid fa-forward-step px-3"></i
-      ></span>
+    <section class="select-view-sections">
+      <div class="checkbox-container">
+        <div class="my-input-group">
+          <input type="checkbox" id="view-to-learn" class="me-1" />
+          <label for="#view-to-learn">Close Sentences to Learn</label>
+        </div>
+        <div class="my-input-group">
+          <input type="checkbox" id="view-learned" class="me-1" />
+          <label for="#view-to-learn">Close Learned Sentences</label>
+        </div>
+      </div>
     </section>
-    <section id="render-container" class="container text-white">
-      <!-- Sentences to learn rendered here-->
-    </section>
-    <p class="text-center text-white p-2">
-      Don't give up! You have
-      <span id="to-learn-words-number" class="text-warning"></span> words to
-      learn
-    </p>
-    <hr class="my-4" />
-    <!-- Learned Sentences-->
-    <div class="header-one text-center d-flex justify-content-center">
-      <h2 class="text-center text-white">Learned Sentences</h2>
-      <img
-        class="mx-3 learned-img"
-        src="https://png.pngtree.com/png-clipart/20230316/original/pngtree-well-done-banner-speech-bubble-png-image_8990161.png"
-        alt=""
-      />
-    </div>
-    <section id="get-sentence-learned" class="container">
-      <span id="prev-sentence-learned" class=""
-        ><i class="fa-solid fa-backward-step px-3"></i>Prev</span
-      >
-      <span id="next-sentence-learned" class=""
-        >Next <i class="fa-solid fa-forward-step px-3"></i
-      ></span>
-    </section>
-    <section id="render-container-learned" class="container text-white">
-      <!-- Learned Sentences rendered here-->
-    </section>
-    <p class="text-center text-white p-2">
-      You have learned
-      <span id="learned-words-number" class="text-warning"></span> words.
-    </p>
+    <main>
+      <div id="to-learn-open-close-container">
+        <div class="header-one text-center d-flex justify-content-center">
+          <h2 class="text-center text-white">Sentences to learn</h2>
+          <img
+            class="mx-3 to-learn-img"
+            src="https://media2.giphy.com/media/tVhJw24Gv8FGGlnjDN/giphy.gif"
+            alt=""
+          />
+        </div>
+
+        <section id="get-sentence" class="container">
+          <span id="prev-sentence" class=""
+            ><i class="fa-solid fa-backward-step px-3"></i>Prev</span
+          >
+          <span id="next-sentence" class=""
+            >Next <i class="fa-solid fa-forward-step px-3"></i
+          ></span>
+        </section>
+        <section id="render-container" class="container text-white">
+          <!-- Sentences to learn rendered here-->
+        </section>
+        <p class="text-center text-white p-2">
+          Don't give up! You have
+          <span id="to-learn-words-number" class="text-warning"></span> words to
+          learn
+        </p>
+        <hr class="my-4" />
+      </div>
+      <!-- Learned Sentences-->
+      <div id="learned-open-close-container">
+        <div class="header-one text-center d-flex justify-content-center">
+          <h2 class="text-center text-white">Learned Sentences</h2>
+          <img
+            class="mx-3 learned-img"
+            src="https://png.pngtree.com/png-clipart/20230316/original/pngtree-well-done-banner-speech-bubble-png-image_8990161.png"
+            alt=""
+          />
+        </div>
+        <section id="get-sentence-learned" class="container">
+          <span id="prev-sentence-learned" class=""
+            ><i class="fa-solid fa-backward-step px-3"></i>Prev</span
+          >
+          <span id="next-sentence-learned" class=""
+            >Next <i class="fa-solid fa-forward-step px-3"></i
+          ></span>
+        </section>
+        <section id="render-container-learned" class="container text-white">
+          <!-- Learned Sentences rendered here-->
+        </section>
+        <p class="text-center text-white p-2">
+          You have learned
+          <span id="learned-words-number" class="text-warning"></span> words.
+        </p>
+      </div>
+    </main>
+    <footer>
+      <p style="font-size: 12px">&copy; Bedir Gocmez</p>
+    </footer>
+    <script src="./view-area.js"></script>
     <script src="./nav-active.js"></script>
     <script src="./app.js"></script>
     <script src="./app-2.js"></script>

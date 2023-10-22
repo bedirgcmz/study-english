@@ -31,7 +31,11 @@ fetchData()
     // setLocalStorage("allSentencesData", jsonData);
     data = getLocalStorage("allSentencesData");
     toLearnData = data && data.filter((sentence) => sentence.state === false);
-    toLearnWordsNumber.innerText = toLearnData.length;
+    if (toLearnData.length > 0) {
+      toLearnWordsNumber.innerText = toLearnData.length;
+    } else {
+      toLearnWordsNumber.innerText = "0";
+    }
 
     /* Page loadind firstly add a sentence */
     renderNewSentence(0);
@@ -183,3 +187,6 @@ const learnedSentence = (pId) => {
     runOutOfWords();
   }
 };
+
+/**When data updated, it clear localstorage */
+// localStorage.clear();

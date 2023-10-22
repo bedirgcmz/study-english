@@ -123,8 +123,18 @@ const forgotSentence = (pId) => {
   data = updatedData;
   learnedData = data && data.filter((sentence) => sentence.state === true);
   toLearnData = data && data.filter((sentence) => sentence.state === false);
-  learnedWordsNumber.innerText = learnedData.length;
-  toLearnWordsNumber.innerText = toLearnData.length;
+  if (toLearnData.length > 0) {
+    toLearnWordsNumber.innerText = toLearnData.length;
+  } else {
+    toLearnWordsNumber.innerText = "0";
+  }
+  if (learnedData.length > 0) {
+    learnedWordsNumber.innerText = learnedData.length;
+  } else {
+    learnedWordsNumber.innerText = "0";
+  }
+  // learnedWordsNumber.innerText = learnedData.length;
+  // toLearnWordsNumber.innerText = toLearnData.length;
 
   // Yeni data'yı localStorage'a atmak
   setLocalStorage("allSentencesData", updatedData);
