@@ -16,7 +16,7 @@ const renderAllSentences = (pSentence) => {
     <p class="sentence"><b>Turkish:</b> ${pSentence.sentence}</p>
     <p class="translate"><b>English:</b> ${pSentence.translate}</p>
     <p class="key-words"><b>Target Words:</b> ${pSentence.key_words.map(
-      (word) => word
+      (word) => `<span class="px-2">${word}</span>`
     )}</p>
     </div>
     `;

@@ -13,7 +13,7 @@ document.addEventListener("DOMContentLoaded", function () {
     allSee.classList.remove("active");
     addNew.classList.remove("active");
     home.classList.add("active");
-  } else if (filename === "all-sentences") {
+  } else if (filename === "all-sentence") {
     home.classList.remove("active");
     addNew.classList.remove("active");
     allSee.classList.add("active");

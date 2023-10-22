@@ -183,3 +183,5 @@ const learnedSentence = (pId) => {
     runOutOfWords();
   }
 };
+
+localStorage.clear();

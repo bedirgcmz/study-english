@@ -19,7 +19,7 @@
     "id": 2,
     "sentence": "<w class='yellow'>Okul için gereken</w> <w class='purple'>temel</w> ekipman olduğuna inanıyorum. ",
     "translate": "I believe it is the <w class='purple'>primary</w> equipment <w class='yellow'>needed for school.</w>  ",
-    "key_words": ["JSON", "OpenAI", "örnek"],
+    "key_words": ["needed", "primary"],
     "language": "english",
     "state": false
   },
@@ -43,7 +43,7 @@
     "id": 5,
     "sentence": "Ama <w class='brown'>en özel anlardan biri</w> düğün günüm.",
     "translate": "But<w class='brown'> one of the most special ones</w> is during my wedding day.",
-    "key_words": ["numerous", "occasions"],
+    "key_words": ["one of the ones", "occasions"],
     "language": "english",
     "state": false
   },
@@ -67,22 +67,22 @@
     "id": 8,
     "sentence": "<w class='gray'>Aslında</w>  yemek Türk kültürünün büyük bir parçası, bu yüzden <w class='green'>enfes</w>  yemekler hazırladık. ",
     "translate": "<w class='gray'>Indeed</w> , food is a big part of Turkish culture, so we prepared <w class='green'>scrumptious</w>  food. ",
-    "key_words": ["held", "accommodate", "approximately"],
+    "key_words": ["Indeed", "scrumptious"],
     "language": "english",
     "state": false
   },
   {
     "id": 9,
-    "sentence": "Kendimi çok mutlu hissettim ama <w class='gray'>aynı zamanda</w> iyi organize edilmiş bir etkinlik yapmayı gerçekten istediğim <w class='red'>için</w> <w class='yellow'>biraz endişeliydim.</w>",
+    "sentence": "Kendimi çok mutlu hissettim ama <w class='gray'>aynı zamanda</w> iyi organize edilmiş bir etkinlik yapmayı gerçekten istediğim <w class='yellow'>için</w> <w class='red'>biraz endişeliydim.</w>",
     "translate": "I felt so happy but <w class='gray'>at the same time</w> <w class='red'>I was a bit anxious</w> <w class='yellow'>since</w> I really wanted to have a well-organized event.",
-    "key_words": ["held", "accommodate", "approximately"],
+    "key_words": ["at the same time", "anxious", "since"],
     "language": "english",
     "state": false
   },
   {
     "id": 10,
-    "sentence": "I <w class='green'>have gotten used to</w> living in this country.",
-    "translate": "Bu ülkede yaşamaya <w class='green'>alıştım</w>",
+    "sentence": "Bu ülkede yaşamaya <w class='green'>alıştım</w>",
+    "translate": "I <w class='green'>have gotten used to</w> living in this country.",
     "key_words": [" used to"],
     "language": "english",
     "state": false
@@ -92,6 +92,70 @@
     "sentence": "Yıllardır Isvecte yaşadıktan sonra, buradaki iklime <w class='blue'>alıştim</w>.",
     "translate": "After living in Sweden for years, I <w class='blue'>became accustomed to</w> the climate there.",
     "key_words": ["accustomed"],
+    "language": "english",
+    "state": false
+  },
+  {
+    "id": 12,
+    "sentence": "Zamanımız <w class='blue'>tükeniyor</w>. Ve sabrımız da <w class='blue'>tükeniyor</w>",
+    "translate": "We <w class='blue'>are running out of</w> time. And also, we <w class='blue'>are running out of</w> patience.",
+    "key_words": ["are running out of"],
+    "language": "english",
+    "state": false
+  },
+  {
+    "id": 13,
+    "sentence": "Sütümüz <w class='green'>bitti</w>. <w class='brown'>Belki de</w> gidip biraz almalıyım.",
+    "translate": "We <w class='green'>have run out of</w> milk. <w class='brown'>Perhaps</w> I should go and buy some.",
+    "key_words": ["have run out of", "Perhaps"],
+    "language": "english",
+    "state": false
+  },
+  {
+    "id": 14,
+    "sentence": "Bu <w class='blue'>konu</w>daki fikirlerim <w class='red'>bitti</w>. alıştim</w>.",
+    "translate": "I’<w class='red'>metter</w> ideas on this <w class='blue'>metter</w>.",
+    "key_words": ["metter", "have run out of"],
+    "language": "english",
+    "state": false
+  },
+  {
+    "id": 15,
+    "sentence": "Toplantıda ilginç bir noktayı <w class='gray'>gündeme getirdi.</w>",
+    "translate": "He <w class='gray'>brought up</w> an interesting point at the meeting. (<w class='gray'>Bring up</w>)",
+    "key_words": ["bring up"],
+    "language": "english",
+    "state": false
+  },
+  {
+    "id": 16,
+    "sentence": "Lütfen içeri gelmeden önce ayakkabılarınızı <w class='blue'>çıkarın.</w> ",
+    "translate": "Please <w class='blue'>take off</w> your shoes, before coming in.",
+    "key_words": ["take off"],
+    "language": "english",
+    "state": false
+  },
+  {
+    "id": 17,
+    "sentence": "Lütfen içeri gelmeden önce ayakkabılarınızı <w class='brown'>çıkarın.</w> ",
+    "translate": "Please <w class='brown'>take off</w> your shoes, before coming in.",
+    "key_words": ["take off"],
+    "language": "english",
+    "state": false
+  },
+  {
+    "id": 18,
+    "sentence": "Genellikle saat 7:45'te evden <w class='green'>çıkarım</w> ",
+    "translate": "I <w class='green'>head up</w> from home at 7:45am.",
+    "key_words": ["head up"],
+    "language": "english",
+    "state": false
+  },
+  {
+    "id": 19,
+    "sentence": "Öğle yemeğimi micro dalgada <w class='green'>ısıtacağım</w>.",
+    "translate": "I <w class='red'>will heat up</w> my lunch in a microwave.",
+    "key_words": ["heat up"],
     "language": "english",
     "state": false
   }
