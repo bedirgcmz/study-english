@@ -196,4 +196,4 @@ const learnedSentence = (pId) => {
 };
 
 /**When data updated, it clear localstorage */
-localStorage.clear();
+// localStorage.clear();

@@ -8,7 +8,7 @@ const nextButtonLearned = document.getElementById("next-sentence-learned");
 learnedData = getLocalStorage("allSentencesData").filter(
   (sentence) => sentence.state === true
 );
-learnedWordsNumber.innerText = learnedData.length;
+learnedWordsNumber.innerText = learnedData ? learnedData.length : 0;
 
 const renderNewSentenceLearned = (number) => {
   totalSentencesLearned.innerText = `${number + 1}/${learnedData.length}`;
