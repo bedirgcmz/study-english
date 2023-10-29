@@ -158,5 +158,45 @@
     "key_words": ["heat up"],
     "language": "english",
     "state": false
+  },
+  {
+    "id": 20,
+    "sentence": "Dil öğrenmek zor ol<w class='green'>sa bile</w> çalışmaya <w class='yellow'>devam ed</w>eceğim. ısıtacağım</w>.",
+    "translate": "I will <w class='yellow'>keep studying</w> <w class='green'>even if</w> learning language is difficult.",
+    "key_words": ["keep studying", "even if"],
+    "language": "english",
+    "state": false
+  },
+  {
+    "id": 21,
+    "sentence": "<w class='gray'>Şişmanla</w><w class='red'>sa</w>m <w class='red'>bile</w> yemeye <w class='orange'>devam edeceğim</w>.",
+    "translate": "I will <w class='orange'>keep eating</w> <w class='red'>even if</w> I <w class='gray'>get fat</w>.",
+    "key_words": ["keep eating", "even if"],
+    "language": "english",
+    "state": false
+  },
+  {
+    "id": 22,
+    "sentence": "Yemek pişirmeye <w class='green'>alışkınım<w class='green'>.",
+    "translate": "I <w class='green'>am used to<w class='green'> cooking.",
+    "key_words": ["be used to"],
+    "language": "english",
+    "state": false
+  },
+  {
+    "id": 23,
+    "sentence": "İsveç’te yaşamaya <w class='blue'>alışıyorum</w>.",
+    "translate": "I <w class='blue'>am getting used to</w> living in Sweden.",
+    "key_words": ["am getting used to"],
+    "language": "english",
+    "state": false
+  },
+  {
+    "id": 24,
+    "sentence": "Hava durumuna <w class='green'>alışamıyorum</w>.",
+    "translate": "I <w class='green'>can’t get used to</w> the weather.",
+    "key_words": ["get used to"],
+    "language": "english",
+    "state": false
   }
 ]

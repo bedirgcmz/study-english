@@ -24,8 +24,8 @@ header {
 .navbar ul li a {
   padding: 3px 6px;
   border-radius: 7px;
-  box-shadow: rgb(0 0 0 / 26%) 0px 4px 12px;
+  /* box-shadow: rgb(0 0 0 / 26%) 0px 4px 12px; */
 }
 .active {
-  background-color: #ffc107;
+  color: #ffc107;
 }

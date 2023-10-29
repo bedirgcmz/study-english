@@ -11,6 +11,8 @@ learnedData = getLocalStorage("allSentencesData").filter(
 learnedWordsNumber.innerText = learnedData.length;
 
 const renderNewSentenceLearned = (number) => {
+  totalSentencesLearned.innerText = `${number + 1}/${learnedData.length}`;
+
   if (learnedData.length > 0) {
     learnedData &&
       (renderContainerLearned.innerHTML = `

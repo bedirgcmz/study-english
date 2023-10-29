@@ -3,6 +3,10 @@ const renderContainer = document.getElementById("render-container");
 const getSentenceButton = document.getElementById("get-sentence");
 const prevButton = document.getElementById("prev-sentence");
 const nextButton = document.getElementById("next-sentence");
+const totalSentences = document.getElementById("total-sentences");
+const totalSentencesLearned = document.getElementById(
+  "total-sentences-learned"
+);
 const toLearnWordsNumber = document.getElementById("to-learn-words-number");
 const learnedWordsNumber = document.getElementById("learned-words-number");
 
@@ -36,6 +40,7 @@ fetchData()
     } else {
       toLearnWordsNumber.innerText = "0";
     }
+    // totalSentences.innerText = `0/${toLearnData.length}`;
 
     /* Page loadind firstly add a sentence */
     renderNewSentence(0);
@@ -46,6 +51,8 @@ if (toLearnData) {
 }
 
 const renderNewSentence = (number) => {
+  totalSentences.innerText = `${number + 1}/${toLearnData.length}`;
+
   if (toLearnData.length > 0) {
     toLearnData &&
       (renderContainer.innerHTML = `
@@ -189,4 +196,4 @@ const learnedSentence = (pId) => {
 };
 
 /**When data updated, it clear localstorage */
-// localStorage.clear();
+localStorage.clear();

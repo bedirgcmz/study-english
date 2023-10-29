@@ -18,11 +18,11 @@ const renderAllSentences = (pSentence) => {
     <p class="key-words"><b>Target Words:</b> ${pSentence.key_words.map(
       (word) => `<span class="px-2">${word}</span>`
     )}</p>
-    </div>
+    </div> <br/>
     `;
 };
 const fromLocalStrangeData = getLocalStorage("allSentencesData");
 console.log(fromLocalStrangeData);
-allSentencesRender.innerHTML = fromLocalStrangeData.map((sentence) =>
-  renderAllSentences(sentence)
-);
+allSentencesRender.innerHTML = fromLocalStrangeData
+  .map((sentence) => renderAllSentences(sentence))
+  .join("");

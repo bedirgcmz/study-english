@@ -1,11 +1,6 @@
-.footer {
-  /* position: fixed;
-  bottom: 0;
-  left: 0;
-  right: 0; */
-  background-color: #f8f9fa;
-  text-align: center;
-  padding: 10px;
+body {
+  position: relative;
+  min-height: 100vh;
 }
 footer {
   width: 100%;
