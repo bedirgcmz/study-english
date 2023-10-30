@@ -72,12 +72,14 @@ const openTranslateLearned = (id) => {
 
 const getPrevSentenceLearned = () => {
   if (learnedData) {
-    if (number === 0) {
+    if (number <= 0) {
       number = learnedData.length - 1;
       renderNewSentenceLearned(number);
     } else {
       number--;
       renderNewSentenceLearned(number);
+      console.log(learnedData.length);
+      console.log(number);
     }
   }
 };

@@ -51,7 +51,11 @@ if (toLearnData) {
 }
 
 const renderNewSentence = (number) => {
-  totalSentences.innerText = `${number + 1}/${toLearnData.length}`;
+  if (toLearnData.length === 0) {
+    totalSentences.innerText = `0/0`;
+  } else {
+    totalSentences.innerText = `${number + 1}/${toLearnData.length}`;
+  }
 
   if (toLearnData.length > 0) {
     toLearnData &&
@@ -112,7 +116,7 @@ const openTranslate = (pId) => {
 
 const getPrevSentence = () => {
   if (toLearnData) {
-    if (number === 0) {
+    if (number <= 0) {
       number = toLearnData.length - 1;
       renderNewSentence(number);
     } else {
@@ -166,7 +170,11 @@ if (localStorage.getItem("allSentencesData") === null) {
 
 /********************* */
 const renderNewSentenceLearned = (number) => {
-  totalSentencesLearned.innerText = `${number + 1}/${learnedData.length}`;
+  if (learnedData.length === 0) {
+    totalSentencesLearned.innerText = `0/0`;
+  } else {
+    totalSentencesLearned.innerText = `${number + 1}/${learnedData.length}`;
+  }
 
   if (learnedData.length > 0) {
     learnedData &&
