@@ -9,6 +9,7 @@ const totalSentencesLearned = document.getElementById(
 );
 const toLearnWordsNumber = document.getElementById("to-learn-words-number");
 const learnedWordsNumber = document.getElementById("learned-words-number");
+const updateButton = document.getElementById("update-button");
 
 /* degiskenler */
 let data;
@@ -40,7 +41,6 @@ fetchData()
     } else {
       toLearnWordsNumber.innerText = "0";
     }
-    // totalSentences.innerText = `0/${toLearnData.length}`;
 
     /* Page loadind firstly add a sentence */
     renderNewSentence(0);
@@ -62,13 +62,13 @@ const renderNewSentence = (number) => {
                   ${toLearnData[number].sentence}
                 </p>
                 <div class="d-flex flex-column align-items-center justfy-content-end">
-                  <i id=${toLearnData[number].id} onclick="openTranslate(this.id)" class="fa-solid fa-chevron-down open-icon px-2 mx-1 mb-2"></i>
-                  <i id=${toLearnData[number].id} onclick="openTranslate(this.id)" class="fa-solid fa-chevron-up close-icon px-2 mx-1 d-none mb-2"></i>
-                  <i id=${toLearnData[number].id} onclick="readText(this.id)" class="fa-solid fa-volume-high read-icon p-2 mx-1 mb-2"></i>
-                  <i id=${toLearnData[number].id} onclick="learnedSentence(${toLearnData[number].id})" class="fa-solid fa-check learned-icon"></i>
-                </div>
+                  <i id="open${toLearnData[number].id}" onclick="openTranslate(${toLearnData[number].id})" class="fa-solid fa-chevron-down open-icon px-2 mx-1 mb-2"></i>
+                  <i id="close${toLearnData[number].id}" onclick="openTranslate(${toLearnData[number].id})" class="fa-solid fa-chevron-up close-icon px-2 mx-1 d-none mb-2"></i>
+                  <i id="read${toLearnData[number].id}" onclick="readText(${toLearnData[number].id})" class="fa-solid fa-volume-high read-icon p-2 mx-1 mb-2"></i>
+                  <i id="learned${toLearnData[number].id}" onclick="learnedSentence(${toLearnData[number].id})" class="fa-solid fa-check learned-icon"></i>
+                 </div>
               </div>
-              <p id="trl${toLearnData[number].id}" class="translate px-2 py-3">
+              <p id="trlLearn${toLearnData[number].id}" class="translate px-2 py-3">
                 ${toLearnData[number].translate}
               </p>
             </div>
@@ -89,10 +89,11 @@ const runOutOfWords = () => {
       `;
 };
 
-const openTranslate = (id) => {
-  const targetElement = document.getElementById(`trl${id}`);
-  const openIcon = document.getElementById(id);
-  const closeIcon = document.querySelector(".close-icon");
+const openTranslate = (pId) => {
+  const targetElement = document.getElementById(`trlLearn${pId}`);
+  const openIcon = document.getElementById(`open${pId}`);
+  const closeIcon = document.getElementById(`close${pId}`);
+
   if (
     targetElement.style.display === "none" ||
     targetElement.style.display === ""
@@ -138,11 +139,11 @@ prevButton.addEventListener("click", getPrevSentence);
 nextButton.addEventListener("click", getNextSentence);
 
 /* Read text function */
-function readText(id) {
-  var textToRead = document.getElementById(`trl${id}`).textContent;
+function readText(pId) {
+  const textToRead = document.getElementById(`trlLearn${pId}`).textContent;
 
-  var synth = window.speechSynthesis;
-  var utterThis = new SpeechSynthesisUtterance(textToRead);
+  const synth = window.speechSynthesis;
+  const utterThis = new SpeechSynthesisUtterance(textToRead);
 
   synth.speak(utterThis);
 }
@@ -163,6 +164,42 @@ if (localStorage.getItem("allSentencesData") === null) {
   data && setLocalStorage("allSentencesData", data);
 }
 
+/********************* */
+const renderNewSentenceLearned = (number) => {
+  totalSentencesLearned.innerText = `${number + 1}/${learnedData.length}`;
+
+  if (learnedData.length > 0) {
+    learnedData &&
+      (renderContainerLearned.innerHTML = `
+          <div class="sentence-container">
+              <div class="sentences-and-icon px-2 my-3">
+                <p>
+                  ${learnedData[number].sentence}
+                </p>
+                <div class="d-flex flex-column align-items-center justfy-content-end">
+                  <i id="${learnedData[number].id}-learned" onclick="openTranslateLearned(this.id)" class="fa-solid fa-chevron-down open-icon-learned px-2 mx-1 mb-2"></i>
+                  <i id="${learnedData[number].id}-learned" onclick="openTranslateLearned(this.id)" class="fa-solid fa-chevron-up close-icon-learned px-2 mx-1 mb-2 d-none"></i>
+                  <i id="${learnedData[number].id}-learned" onclick="readTextLearned(this.id)" class="fa-solid fa-volume-high read-icon-learned p-2 mx-1 mb-2"></i>
+                  <i id=${learnedData[number].id} onclick="forgotSentence(${learnedData[number].id})" class="fa-solid fa-xmark unlearned-icon"></i>
+                </div>
+              </div>
+              <p id="trl${learnedData[number].id}-learned" class="translate px-2 py-3">
+                ${learnedData[number].translate}
+              </p>
+            </div>
+        `);
+  } else {
+    learnedData &&
+      (renderContainerLearned.innerHTML = `
+          <div class="sentence-container p-2">
+                <p>
+                  You haven't learned the sentence yet!
+                </p> 
+            </div>
+        `);
+  }
+};
+/************************** */
 /* Move sentence to learned content */
 const learnedSentence = (pId) => {
   const fromLocalStrangeData = getLocalStorage("allSentencesData");
@@ -197,3 +234,9 @@ const learnedSentence = (pId) => {
 
 /**When data updated, it clear localstorage */
 // localStorage.clear();
+
+updateButton.addEventListener("click", function () {
+  localStorage.clear();
+  fetchData();
+  location.reload();
+});

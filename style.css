@@ -194,3 +194,15 @@ hr {
 .checkbox-container label {
   margin-right: 20px;
 }
+#update-button {
+  background-color: #6c000a;
+  color: #6c757d;
+  padding: 2px 8px;
+  width: 140px;
+  margin: auto;
+  border-radius: 8px;
+}
+
+.warning-update {
+  color: #9a3b45;
+}

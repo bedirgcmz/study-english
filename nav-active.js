@@ -4,10 +4,7 @@ document.addEventListener("DOMContentLoaded", function () {
   var home = document.getElementById("home");
   var allSee = document.getElementById("see-all");
   var addNew = document.getElementById("add-new");
-  console.log(home);
-  console.log(allSee);
-  console.log(addNew);
-  console.log(filename);
+
   /** here is for netlfy **/
   // if (filename === "") {
   //   allSee.classList.remove("active");
