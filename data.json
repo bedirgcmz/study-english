@@ -5,7 +5,7 @@
     "translate": "<W class= 'brown'>Additionly</W>, I am also a team player!",
     "key_words": ["additionly"],
     "language": "english",
-    "state": true
+    "state": false
   },
   {
     "id": 1,
@@ -13,7 +13,7 @@
     "translate": "<w class='red'>Honestly</w>, I use it <w class='blue'>almost</w> everyday <w class='green'>since</w> I’m <w class='yellow'>currently</w> studying IT course at the university. ",
     "key_words": ["honestly", "since", "currently"],
     "language": "english",
-    "state": true
+    "state": false
   },
   {
     "id": 2,
