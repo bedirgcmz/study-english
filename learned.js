@@ -89,9 +89,10 @@ const forgotSentence = (pId) => {
   // Güncel objeyi 'data' içerisine yüklemek
   data = updatedData;
   learnedData = data && data.filter((sentence) => sentence.state === true);
-  toLearnData = data && data.filter((sentence) => sentence.state === false);
-  if (toLearnData.length > 0) {
-    toLearnWordsNumber.innerText = toLearnData.length;
+  toLearnData = data && data.filter((sentence) => sentence.state === "empty");
+  myLearnListData = data && data.filter((sentence) => sentence.state === false);
+  if (myLearnListData.length > 0) {
+    toLearnWordsNumber.innerText = myLearnListData.length;
   } else {
     toLearnWordsNumber.innerText = "0";
   }
@@ -100,12 +101,10 @@ const forgotSentence = (pId) => {
   } else {
     learnedWordsNumber.innerText = "0";
   }
-  // learnedWordsNumber.innerText = learnedData.length;
-  // toLearnWordsNumber.innerText = toLearnData.length;
 
   // Yeni data'yı localStorage'a atmak
   setLocalStorage("allSentencesData", updatedData);
-  if (toLearnData.length > 0) {
+  if (myLearnListData.length > 0) {
     renderNewSentence(0);
     renderNewSentenceLearned(0);
   } else {

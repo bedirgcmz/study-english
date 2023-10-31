@@ -16,6 +16,7 @@ let data;
 let number = 0;
 let toLearnData;
 let learnedData;
+let myLearnListData;
 
 async function fetchData() {
   try {
@@ -35,11 +36,16 @@ fetchData()
     }
     // setLocalStorage("allSentencesData", jsonData);
     data = getLocalStorage("allSentencesData");
-    toLearnData = data && data.filter((sentence) => sentence.state === false);
-    if (toLearnData.length > 0) {
-      toLearnWordsNumber.innerText = toLearnData.length;
-    } else {
-      toLearnWordsNumber.innerText = "0";
+    toLearnData = data && data.filter((sentence) => sentence.state === "empty");
+    myLearnListData =
+      data && data.filter((sentence) => sentence.state === false);
+    // toLearnWordsNumber elementi bulunuyorsa lengh degerine gore text yazdirma
+    if (toLearnWordsNumber !== null) {
+      if (myLearnListData.length > 0) {
+        toLearnWordsNumber.innerText = myLearnListData.length;
+      } else {
+        toLearnWordsNumber.innerText = "0";
+      }
     }
 
     /* Page loadind firstly add a sentence */
@@ -47,33 +53,37 @@ fetchData()
   })
   .catch((error) => console.error("Hata:", error));
 
-if (toLearnData) {
-}
+// if (toLearnData) {
+
+// }
 
 const renderNewSentence = (number) => {
-  if (toLearnData.length === 0) {
-    totalSentences.innerText = `0/0`;
-  } else {
-    totalSentences.innerText = `${number + 1}/${toLearnData.length}`;
+  //totalSentences elemti varsa lenghtine gore text yazdirma
+  if (totalSentences !== null) {
+    if (myLearnListData.length === 0) {
+      totalSentences.innerText = `0/0`;
+    } else {
+      totalSentences.innerText = `${number + 1}/${myLearnListData.length}`;
+    }
   }
 
-  if (toLearnData.length > 0) {
-    toLearnData &&
+  if (myLearnListData.length > 0 && renderContainer !== null) {
+    myLearnListData &&
       (renderContainer.innerHTML = `
           <div class="sentence-container">
               <div class="sentences-and-icon my-1">
                 <p>
-                  ${toLearnData[number].sentence}
+                  ${myLearnListData[number].sentence}
                 </p>
                 <div class="d-flex flex-column align-items-center justfy-content-end">
-                  <i id="open${toLearnData[number].id}" onclick="openTranslate(${toLearnData[number].id})" class="fa-solid fa-chevron-down open-icon px-2 mx-1 mb-2"></i>
-                  <i id="close${toLearnData[number].id}" onclick="openTranslate(${toLearnData[number].id})" class="fa-solid fa-chevron-up close-icon px-2 mx-1 d-none mb-2"></i>
-                  <i id="read${toLearnData[number].id}" onclick="readText(${toLearnData[number].id})" class="fa-solid fa-volume-high read-icon p-2 mx-1 mb-2"></i>
-                  <i id="learned${toLearnData[number].id}" onclick="learnedSentence(${toLearnData[number].id})" class="fa-solid fa-check learned-icon"></i>
+                  <i id="open${myLearnListData[number].id}" onclick="openTranslate(${myLearnListData[number].id})" class="fa-solid fa-chevron-down open-icon px-2 mx-1 mb-2"></i>
+                  <i id="close${myLearnListData[number].id}" onclick="openTranslate(${myLearnListData[number].id})" class="fa-solid fa-chevron-up close-icon px-2 mx-1 d-none mb-2"></i>
+                  <i id="read${myLearnListData[number].id}" onclick="readText(${myLearnListData[number].id})" class="fa-solid fa-volume-high read-icon p-2 mx-1 mb-2"></i>
+                  <i id="learned${myLearnListData[number].id}" onclick="learnedSentence(${myLearnListData[number].id})" class="fa-solid fa-check learned-icon"></i>
                  </div>
               </div>
-              <p id="trlLearn${toLearnData[number].id}" class="translate px-2 py-3">
-                ${toLearnData[number].translate}
+              <p id="trlLearn${myLearnListData[number].id}" class="translate px-2 py-3">
+                ${myLearnListData[number].translate}
               </p>
             </div>
         `);
@@ -83,14 +93,16 @@ const renderNewSentence = (number) => {
 };
 
 const runOutOfWords = () => {
-  renderContainer.innerHTML = `
-        <div class="sentence-container">
-            <div class="sentences-and-icon px-2 my-3">
-              <p>
-                Well Done! You run out of to learn sentences.
-              </p>             
-          </div>
-      `;
+  if (renderContainer !== null) {
+    renderContainer.innerHTML = `
+          <div class="sentence-container">
+              <div class="sentences-and-icon px-2 my-3">
+                <p>
+                  Your learning list is currently empty.
+                </p>             
+            </div>
+        `;
+  }
 };
 
 const openTranslate = (pId) => {
@@ -115,9 +127,9 @@ const openTranslate = (pId) => {
 /* ileri geri fonksiyonlar */
 
 const getPrevSentence = () => {
-  if (toLearnData) {
+  if (myLearnListData) {
     if (number <= 0) {
-      number = toLearnData.length - 1;
+      number = myLearnListData.length - 1;
       renderNewSentence(number);
     } else {
       number--;
@@ -127,8 +139,8 @@ const getPrevSentence = () => {
 };
 
 const getNextSentence = () => {
-  if (toLearnData) {
-    if (number < toLearnData.length - 1) {
+  if (myLearnListData) {
+    if (number < myLearnListData.length - 1) {
       number++;
       renderNewSentence(number);
     } else {
@@ -139,8 +151,10 @@ const getNextSentence = () => {
 };
 
 /* This event get a new sentence */
-prevButton.addEventListener("click", getPrevSentence);
-nextButton.addEventListener("click", getNextSentence);
+if (prevButton !== null && nextButton !== null) {
+  prevButton.addEventListener("click", getPrevSentence);
+  nextButton.addEventListener("click", getNextSentence);
+}
 
 /* Read text function */
 function readText(pId) {
@@ -170,13 +184,15 @@ if (localStorage.getItem("allSentencesData") === null) {
 
 /********************* */
 const renderNewSentenceLearned = (number) => {
-  if (learnedData.length === 0) {
-    totalSentencesLearned.innerText = `0/0`;
-  } else {
-    totalSentencesLearned.innerText = `${number + 1}/${learnedData.length}`;
+  if (totalSentencesLearned !== null) {
+    if (learnedData.length === 0) {
+      totalSentencesLearned.innerText = `0/0`;
+    } else {
+      totalSentencesLearned.innerText = `${number + 1}/${learnedData.length}`;
+    }
   }
 
-  if (learnedData.length > 0) {
+  if (learnedData.length > 0 && renderContainerLearned !== null) {
     learnedData &&
       (renderContainerLearned.innerHTML = `
           <div class="sentence-container">
@@ -225,26 +241,74 @@ const learnedSentence = (pId) => {
 
   // Güncel objeyi 'data' içerisine yüklemek
   data = updatedData;
-  toLearnData = data && data.filter((sentence) => sentence.state === false);
+  toLearnData = data && data.filter((sentence) => sentence.state === "empty");
   learnedData = data && data.filter((sentence) => sentence.state === true);
-  toLearnWordsNumber.innerText = toLearnData.length;
-  learnedWordsNumber.innerText = learnedData.length;
+  myLearnListData = data && data.filter((sentence) => sentence.state === false);
+
+  if (toLearnWordsNumber !== null && learnedWordsNumber !== null) {
+    toLearnWordsNumber.innerText = myLearnListData.length;
+    learnedWordsNumber.innerText = learnedData.length;
+  }
 
   // Yeni data'yı localStorage'a atmak
   setLocalStorage("allSentencesData", updatedData);
-  if (toLearnData.length > 0) {
-    renderNewSentence(0);
+
+  //   if (
+  //     (myLearnListData.length > 0 || learnedData.lenght > 0) &&
+  //     renderContainerLearned !== null
+  //   ) {
+  //     renderNewSentence(0);
+  //     renderNewSentenceLearned(0);
+  //   } else {
+  //     runOutOfWords();
+  //   }
+  // };
+  console.log(learnedData.lenght);
+  if (learnedData.lenght !== 0) {
     renderNewSentenceLearned(0);
-  } else {
+  }
+  if (myLearnListData.length === 0) {
+    renderNewSentence(0);
     runOutOfWords();
+  } else {
+    renderNewSentence(0);
   }
 };
 
 /**When data updated, it clear localstorage */
 // localStorage.clear();
+if (updateButton !== null) {
+  updateButton.addEventListener("click", updateData);
+}
 
-updateButton.addEventListener("click", function () {
-  localStorage.clear();
-  fetchData();
-  location.reload();
-});
+function updateData() {
+  Swal.fire({
+    title: "Veri Güncelleme Onayı",
+    text: "Verinizi güncellemek istediğinizden emin misiniz?",
+    icon: "question",
+    showCancelButton: true,
+    confirmButtonText: "Evet, Güncelle",
+    cancelButtonText: "Hayır, İptal",
+  }).then((result) => {
+    if (result.isConfirmed) {
+      // Kullanıcı "Evet, Güncelle" dediğinde yapılacak işlemler
+      localStorage.clear();
+      fetchData();
+      setTimeout(() => {
+        location.reload();
+      }, 3000);
+      Swal.fire(
+        "Tebrikler!",
+        "Verinizi başarıyla güncellediniz. Şimdi All Sentences sayfasından öğrenme listesi oluşturabilirsiniz.",
+        "success"
+      );
+    } else {
+      // Kullanıcı "Hayır, İptal" dediğinde yapılacak işlemler
+      Swal.fire(
+        "İşlem İptal Edildi",
+        "Var olan veri bilginiz değiştirilmedi.",
+        "info"
+      );
+    }
+  });
+}
