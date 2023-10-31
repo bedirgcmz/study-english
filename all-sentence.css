@@ -16,7 +16,6 @@ b {
   justify-content: space-between;
   align-items: center;
 }
-
 div.empty {
   border-top: 21px solid #dc3545;
 }
@@ -44,7 +43,6 @@ button.add-to-learn {
 .add-to-learned i {
   color: #05b8388f;
 }
-
 button.forget i {
   color: #dc3546b0;
 }
