@@ -24,7 +24,7 @@ const renderAllSentences = (pSentence) => {
       })"><i class="fa-solid fa-hourglass-start pe-2"></i>Learn</button>
       <button class="forget" onclick="forgotSentences(${
         pSentence.id
-      })"><i class="fa-solid fa-xmark pe-2"></i>forget</button>
+      })"><i class="fa-solid fa-xmark pe-2"></i>Forget</button>
       <button class="add-to-learned" onclick="learnedSentenceInAllSentences(${
         pSentence.id
       })"><i class="fa-solid fa-check-double pe-2"></i>Learned</button>

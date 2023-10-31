@@ -23,7 +23,7 @@ b {
   color: #f8f9fa;
   font-size: 0.8rem;
   padding: 6px 24px;
-  border: 2px solid #1064df;
+  border: 2px solid #1063df8f;
   border-radius: 8px;
 }
 div.empty {
@@ -36,7 +36,7 @@ div.false {
   border-top: 21px solid #1064df;
 }
 .add-to-learn i {
-  color: #1064df;
+  color: #1063df8f;
 }
 .add-to-learned {
   /* width: 48%; */
@@ -45,11 +45,11 @@ div.false {
   color: #f8f9fa;
   font-size: 0.8rem;
   padding: 6px 24px;
-  border: 2px solid #05b838;
+  border: 2px solid #05b8388f;
   border-radius: 8px;
 }
 .add-to-learned i {
-  color: #05b838;
+  color: #05b8388f;
 }
 button.forget {
   background-color: #343a40;
@@ -57,9 +57,9 @@ button.forget {
   color: #f8f9fa;
   font-size: 0.8rem;
   padding: 6px 24px;
-  border: 2px solid #dc3545;
+  border: 2px solid #dc3546b0;
   border-radius: 8px;
 }
 button.forget i {
-  color: #dc3545;
+  color: #dc3546b0;
 }
