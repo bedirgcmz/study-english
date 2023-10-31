@@ -113,8 +113,8 @@
   },
   {
     "id": 14,
-    "sentence": "Bu <w class='blue'>konu</w>daki fikirlerim <w class='red'>bitti</w>. alıştim</w>.",
-    "translate": "I’<w class='red'>metter</w> ideas on this <w class='blue'>metter</w>.",
+    "sentence": "Bu <w class='blue'>konu</w>daki fikirlerim <w class='red'>bitti</w>.",
+    "translate": "I’ve<w class='red'>run out of</w> ideas on this <w class='blue'>metter</w>.",
     "key_words": ["metter", "have run out of"],
     "language": "english",
     "state": "empty"
@@ -137,9 +137,9 @@
   },
   {
     "id": 17,
-    "sentence": "Lütfen içeri gelmeden önce ayakkabılarınızı <w class='brown'>çıkarın.</w> ",
-    "translate": "Please <w class='brown'>take off</w> your shoes, before coming in.",
-    "key_words": ["take off"],
+    "sentence": "<w class='brown'>Canım</w> dışarı çıkmak <w class='brown'>istemiyor.</w>",
+    "translate": "I <w class='brown'>don't feel like</w> going out",
+    "key_words": ["feel like"],
     "language": "english",
     "state": "empty"
   },
