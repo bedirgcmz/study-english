@@ -37,19 +37,26 @@ fetchData()
     // setLocalStorage("allSentencesData", jsonData);
     data = getLocalStorage("allSentencesData");
     toLearnData = data && data.filter((sentence) => sentence.state === "empty");
+    learnedData = data && data.filter((sentence) => sentence.state === true);
     myLearnListData =
       data && data.filter((sentence) => sentence.state === false);
     // toLearnWordsNumber elementi bulunuyorsa lengh degerine gore text yazdirma
-    if (toLearnWordsNumber !== null) {
-      if (myLearnListData.length > 0) {
-        toLearnWordsNumber.innerText = myLearnListData.length;
-      } else {
-        toLearnWordsNumber.innerText = "0";
-      }
+    // if (toLearnWordsNumber !== null) {
+    //   if (myLearnListData.length > 0) {
+    //     toLearnWordsNumber.innerText = myLearnListData.length;
+    //   } else {
+    //     toLearnWordsNumber.innerText = "0";
+    //   }
+    // }
+    if (toLearnWordsNumber !== null && learnedWordsNumber !== null) {
+      toLearnWordsNumber.innerText = myLearnListData.length;
+      learnedWordsNumber.innerText = learnedData.length;
     }
 
     /* Page loadind firstly add a sentence */
     renderNewSentence(0);
+    /**when loading page */
+    renderNewSentenceLearned(0);
   })
   .catch((error) => console.error("Hata:", error));
 
@@ -253,42 +260,31 @@ const learnedSentence = (pId) => {
   // Yeni data'yı localStorage'a atmak
   setLocalStorage("allSentencesData", updatedData);
 
-  //   if (
-  //     (myLearnListData.length > 0 || learnedData.lenght > 0) &&
-  //     renderContainerLearned !== null
-  //   ) {
-  //     renderNewSentence(0);
-  //     renderNewSentenceLearned(0);
-  //   } else {
-  //     runOutOfWords();
-  //   }
-  // };
-  console.log(learnedData.lenght);
+  //
   if (learnedData.lenght !== 0) {
     renderNewSentenceLearned(0);
   }
-  if (myLearnListData.length === 0) {
-    renderNewSentence(0);
-    runOutOfWords();
-  } else {
-    renderNewSentence(0);
-  }
+  // if (myLearnListData.length === 0) {
+  //   renderNewSentence(0);
+  //   // runOutOfWords();
+  // } else {
+  // }
+  renderNewSentence(0);
 };
 
 /**When data updated, it clear localstorage */
-// localStorage.clear();
 if (updateButton !== null) {
   updateButton.addEventListener("click", updateData);
 }
 
 function updateData() {
   Swal.fire({
-    title: "Veri Güncelleme Onayı",
-    text: "Verinizi güncellemek istediğinizden emin misiniz?",
+    title: "Data Update Confirmation",
+    text: "Are you sure you want to update your data?",
     icon: "question",
     showCancelButton: true,
-    confirmButtonText: "Evet, Güncelle",
-    cancelButtonText: "Hayır, İptal",
+    confirmButtonText: "Yes, update!",
+    cancelButtonText: "No, cancel",
   }).then((result) => {
     if (result.isConfirmed) {
       // Kullanıcı "Evet, Güncelle" dediğinde yapılacak işlemler
@@ -296,19 +292,35 @@ function updateData() {
       fetchData();
       setTimeout(() => {
         location.reload();
-      }, 3000);
+      }, 4000);
       Swal.fire(
-        "Tebrikler!",
-        "Verinizi başarıyla güncellediniz. Şimdi All Sentences sayfasından öğrenme listesi oluşturabilirsiniz.",
+        "Great!",
+        "You have successfully updated your data. You can now create a learning list from the All Sentences page.",
         "success"
       );
     } else {
       // Kullanıcı "Hayır, İptal" dediğinde yapılacak işlemler
       Swal.fire(
-        "İşlem İptal Edildi",
-        "Var olan veri bilginiz değiştirilmedi.",
+        "Transaction Canceled",
+        "Your existing data information has not been changed.",
         "info"
       );
     }
   });
 }
+
+const welcome = () => {
+  Swal.fire({
+    title: "Hi",
+    text: "Please make a Learning List on the All Sentences page to learn",
+    icon: "info",
+    showCancelButton: false,
+    confirmButtonText: "Ok, I will",
+  });
+};
+
+setTimeout(() => {
+  if (myLearnListData.length === 0) {
+    welcome();
+  }
+}, 4000);

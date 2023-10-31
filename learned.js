@@ -5,13 +5,10 @@ const renderContainerLearned = document.getElementById(
 const prevButtonLearned = document.getElementById("prev-sentence-learned");
 const nextButtonLearned = document.getElementById("next-sentence-learned");
 
-learnedData = getLocalStorage("allSentencesData").filter(
-  (sentence) => sentence.state === true
-);
+// learnedData = getLocalStorage("allSentencesData").filter(
+//   (sentence) => sentence.state === true
+// );
 learnedWordsNumber.innerText = learnedData ? learnedData.length : 0;
-
-/**when loading page */
-renderNewSentenceLearned(0);
 
 /** Open and colose translate */
 const openTranslateLearned = (id) => {
