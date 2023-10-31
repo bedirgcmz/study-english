@@ -16,16 +16,7 @@ b {
   justify-content: space-between;
   align-items: center;
 }
-.add-to-learn {
-  /* width: 48%; */
-  background-color: #343a40;
-  text-align: center;
-  color: #f8f9fa;
-  font-size: 0.8rem;
-  padding: 6px 24px;
-  border: 2px solid #1063df8f;
-  border-radius: 8px;
-}
+
 div.empty {
   border-top: 21px solid #dc3545;
 }
@@ -38,28 +29,22 @@ div.false {
 .add-to-learn i {
   color: #1063df8f;
 }
-.add-to-learned {
-  /* width: 48%; */
+button.add-to-learned,
+button.forget,
+button.add-to-learn {
   background-color: #343a40;
   text-align: center;
   color: #f8f9fa;
   font-size: 0.8rem;
   padding: 6px 24px;
-  border: 2px solid #05b8388f;
+  border: 1px solid #49505796;
   border-radius: 8px;
+  box-shadow: rgba(0, 0, 0, 0.16) 0px 3px 6px, rgba(0, 0, 0, 0.23) 0px 3px 6px;
 }
 .add-to-learned i {
   color: #05b8388f;
 }
-button.forget {
-  background-color: #343a40;
-  text-align: center;
-  color: #f8f9fa;
-  font-size: 0.8rem;
-  padding: 6px 24px;
-  border: 2px solid #dc3546b0;
-  border-radius: 8px;
-}
+
 button.forget i {
   color: #dc3546b0;
 }
