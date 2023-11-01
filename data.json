@@ -43,7 +43,7 @@
     "id": 5,
     "sentence": "Ama <w class='brown'>en özel anlardan biri</w> düğün günüm.",
     "translate": "But<w class='brown'> one of the most special ones</w> is during my wedding day.",
-    "key_words": ["one of the ones", "occasions"],
+    "key_words": ["one of the ones"],
     "language": "english",
     "state": "empty"
   },
@@ -114,7 +114,7 @@
   {
     "id": 14,
     "sentence": "Bu <w class='blue'>konu</w>daki fikirlerim <w class='red'>bitti</w>.",
-    "translate": "I’ve<w class='red'>run out of</w> ideas on this <w class='blue'>metter</w>.",
+    "translate": "I’ve<w class='red'> run out of</w> ideas on this <w class='blue'>metter</w>.",
     "key_words": ["metter", "have run out of"],
     "language": "english",
     "state": "empty"
@@ -237,6 +237,14 @@
     "translate": "I won't work <w class='green'>anymore</w>",
     "key_words": ["anymore"],
     "language": "english",
-    "state": "empty"
+    "state": false
+  },
+  {
+    "id": 30,
+    "sentence": "Filim <w class='purple'>ne kadar</w> <w class='yellow'>sürecek</w>",
+    "translate": "<w class='purple'>How long</w> will the movie <w class='yellow'>last.</w>",
+    "key_words": ["last", "how long"],
+    "language": "english",
+    "state": false
   }
 ]

@@ -16,6 +16,7 @@
       integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN"
       crossorigin="anonymous"
     />
+
     <link rel="stylesheet" href="./css/style.css" />
     <link rel="stylesheet" href="./css/navigasyon.css" />
     <link rel="stylesheet" href="./css/colors.css" />
@@ -53,7 +54,7 @@
         </ul>
       </nav>
     </header>
-    <section class="select-view-sections">
+    <!-- <section class="select-view-sections">
       <div class="checkbox-container">
         <div class="my-input-group">
           <input type="checkbox" id="view-to-learn" class="me-1" />
@@ -64,19 +65,22 @@
           <label for="#view-to-learn">Close Learned Sentences</label>
         </div>
       </div>
-    </section>
+    </section> -->
     <main>
       <div id="to-learn-open-close-container">
         <div class="header-one text-center d-flex justify-content-center">
-          <h2 class="text-center text-white">Sentences to learn</h2>
+          <h2 class="text-center text-white">Automatic Mode</h2>
           <img
             class="mx-3 to-learn-img"
             src="https://media2.giphy.com/media/tVhJw24Gv8FGGlnjDN/giphy.gif"
             alt=""
           />
         </div>
+        <div class="start-button-container">
+          <button id="start-button" class="start-button">Start</button>
+        </div>
 
-        <section id="get-sentence" class="container">
+        <!-- <section id="get-sentence" class="container">
           <span id="prev-sentence" class=""
             ><i class="fa-solid fa-backward-step px-3"></i>Prev</span
           >
@@ -84,19 +88,18 @@
           <span id="next-sentence" class=""
             >Next <i class="fa-solid fa-forward-step px-3"></i
           ></span>
-        </section>
-        <section id="render-container" class="container text-white">
+        </section> -->
+        <section id="auto-render-container" class="container text-white">
           <!-- Sentences to learn rendered here-->
         </section>
-        <p class="text-center p-2 you-have-to-learn">
+        <!-- <p class="text-center p-2 you-have-to-learn">
           Don't give up! You have
           <span id="to-learn-words-number" class="text-warning"></span> words to
           learn
-        </p>
-        <!-- <hr class="my-4" /> -->
+        </p> -->
       </div>
       <!-- Learned Sentences-->
-      <div id="learned-open-close-container">
+      <!--<div id="learned-open-close-container">
         <div class="header-one text-center d-flex justify-content-center">
           <h2 class="text-center text-white">Learned Sentences</h2>
           <img
@@ -114,31 +117,32 @@
             >Next <i class="fa-solid fa-forward-step px-3"></i
           ></span>
         </section>
-        <section id="render-container-learned" class="container text-white">
-          <!-- Learned Sentences rendered here-->
-        </section>
+        <section id="render-container-learned" class="container text-white"> -->
+      <!-- Learned Sentences rendered here-->
+      <!-- </section>
         <p class="text-center p-2 you-have-learned">
           You have learned
           <span id="learned-words-number" class="text-warning"></span> words.
         </p>
-      </div>
+      </div> -->
     </main>
-    <section class="update">
+    <!-- <section class="update">
       <p id="update-button" class="">
         Update Data <i class="fa-solid fa-skull-crossbones px-2"></i>
       </p>
       <p class="warning-update">
         Remember, Your learned sentences are deleted!
       </p>
-    </section>
+    </section> -->
     <footer>
       <p style="font-size: 12px">&copy; Bedir Gocmez</p>
     </footer>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-    <script src="./js/view-area.js"></script>
+    <!-- <script src="./js/view-area.js"></script> -->
     <script src="./js/nav-active.js"></script>
-    <script src="./js/app.js"></script>
-    <script src="./js/learned.js"></script>
+    <!-- <script src="./js/app.js"></script> -->
+    <!-- <script src="./js/learned.js"></script> -->
+    <script src="./js/auto.js"></script>
     <script
       src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
       integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL"

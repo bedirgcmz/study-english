@@ -1,6 +1,6 @@
 /* DOM elements */
 const renderContainer = document.getElementById("render-container");
-const getSentenceButton = document.getElementById("get-sentence");
+// const getSentenceButton = document.getElementById("get-sentence");
 const prevButton = document.getElementById("prev-sentence");
 const nextButton = document.getElementById("next-sentence");
 const totalSentences = document.getElementById("total-sentences");
