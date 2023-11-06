@@ -85,7 +85,7 @@ function readTrText(pId) {
   const utterThis = new SpeechSynthesisUtterance(textToRead);
 
   // Dil ayarını belirtin
-  utterThis.lang = "tr";
+  utterThis.lang = "tr-TR";
 
   synth.speak(utterThis);
 }
@@ -94,7 +94,8 @@ function readEnText(pId) {
 
   const synth = window.speechSynthesis;
   const utterThis = new SpeechSynthesisUtterance(textToRead);
-
+  // Dil ayarını belirtin
+  utterThis.lang = "en-EN";
   synth.speak(utterThis);
 }
 
