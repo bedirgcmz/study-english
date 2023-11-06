@@ -1,15 +1,5 @@
 const allSentencesRender = document.getElementById("all-sentences-render");
 
-// /**
-//  * LocalStorage add and undo player list functions
-//  */
-// const setLocalStorage = (pStringKey, pArrar) => {
-//   localStorage.setItem(pStringKey, JSON.stringify(pArrar));
-// };
-// const getLocalStorage = (pStringKey) => {
-//   return JSON.parse(localStorage.getItem(pStringKey));
-// };
-
 const renderAllSentences = (pSentence) => {
   return `
     <div class="content ${pSentence.state}">
@@ -28,13 +18,27 @@ const renderAllSentences = (pSentence) => {
       <button class="add-to-learned" onclick="learnedSentenceInAllSentences(${
         pSentence.id
       })"><i class="fa-solid fa-check-double pe-2"></i>Learned</button>
+      <button class="delete" onclick="doYouWantToDelete(${
+        pSentence.id
+      })"><i class="fa-solid fa-trash-can"></i></button>
       
     </div>
     </div> <br/>
     `;
 };
-const fromLocalStrangeData = getLocalStorage("allSentencesData");
 
+/**
+ * LocalStorage add and undo player list functions
+ */
+const setLocalStorage = (pStringKey, pArrar) => {
+  localStorage.setItem(pStringKey, JSON.stringify(pArrar));
+};
+const getLocalStorage = (pStringKey) => {
+  return JSON.parse(localStorage.getItem(pStringKey));
+};
+
+//Sayfa acildiginda local deki tum datanin render edilmesi
+const fromLocalStrangeData = getLocalStorage("allSentencesData");
 allSentencesRender.innerHTML = fromLocalStrangeData
   .map((sentence) => renderAllSentences(sentence))
   .join("");
@@ -59,19 +63,8 @@ const addToLearningList = (pId) => {
   learnedData = data && data.filter((sentence) => sentence.state === true);
   myLearnListData = data && data.filter((sentence) => sentence.state === false);
 
-  if (toLearnWordsNumber !== null && learnedWordsNumber !== null) {
-    toLearnWordsNumber.innerText = myLearnListData.length;
-    learnedWordsNumber.innerText = learnedData.length;
-  }
-
   // Yeni data'yı localStorage'a atmak
   setLocalStorage("allSentencesData", updatedData);
-  // if (myLearnListData.length > 0) {
-  //   renderNewSentence(0);
-  //   renderNewSentenceLearned(0);
-  // } else {
-  //   runOutOfWords();
-  // }
   allSentencesRender.innerHTML = updatedData
     .map((sentence) => renderAllSentences(sentence))
     .join("");
@@ -80,6 +73,7 @@ const addToLearningList = (pId) => {
 /* Move sentence to learned content */
 const learnedSentenceInAllSentences = (pId) => {
   const fromLocalStrangeData = getLocalStorage("allSentencesData");
+  console.log(fromLocalStrangeData);
 
   // Gelen datayı 'pId' ile yakalamak ve 'state' değerini true olarak değiştirmek
   const updatedData = fromLocalStrangeData.map((sentence) => {
@@ -97,7 +91,7 @@ const learnedSentenceInAllSentences = (pId) => {
   toLearnData = data && data.filter((sentence) => sentence.state === "empty");
   learnedData = data && data.filter((sentence) => sentence.state === true);
   myLearnListData = data && data.filter((sentence) => sentence.state === false);
-
+  console.log(data);
   // Yeni data'yı localStorage'a atmak
   setLocalStorage("allSentencesData", updatedData);
   allSentencesRender.innerHTML = updatedData
@@ -131,3 +125,32 @@ const forgotSentences = (pId) => {
     .map((sentence) => renderAllSentences(sentence))
     .join("");
 };
+
+const deleteSentence = (pId) => {
+  const inLocalStorageData = getLocalStorage("allSentencesData");
+  const newData = inLocalStorageData.filter((sentence) => sentence.id !== pId);
+  setLocalStorage("allSentencesData", newData);
+
+  allSentencesRender.innerHTML = newData
+    .map((sentence) => renderAllSentences(sentence))
+    .join("");
+};
+
+// Delete sentence
+function doYouWantToDelete(pId) {
+  Swal.fire({
+    title: "Deletion Process",
+    text: "Are you sure you want to delete this sentence?",
+    icon: "question",
+    showCancelButton: true,
+    confirmButtonText: "Yes, delete!",
+    cancelButtonText: "No, cancel",
+  }).then((result) => {
+    if (result.isConfirmed) {
+      deleteSentence(pId);
+      Swal.fire("Great!", "You deleted sentence", "success");
+    } else {
+      Swal.fire("Deletion Canceled", "The sentence was saved", "info");
+    }
+  });
+}

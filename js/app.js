@@ -1,6 +1,5 @@
 /* DOM elements */
 const renderContainer = document.getElementById("render-container");
-// const getSentenceButton = document.getElementById("get-sentence");
 const prevButton = document.getElementById("prev-sentence");
 const nextButton = document.getElementById("next-sentence");
 const totalSentences = document.getElementById("total-sentences");
@@ -40,14 +39,7 @@ fetchData()
     learnedData = data && data.filter((sentence) => sentence.state === true);
     myLearnListData =
       data && data.filter((sentence) => sentence.state === false);
-    // toLearnWordsNumber elementi bulunuyorsa lengh degerine gore text yazdirma
-    // if (toLearnWordsNumber !== null) {
-    //   if (myLearnListData.length > 0) {
-    //     toLearnWordsNumber.innerText = myLearnListData.length;
-    //   } else {
-    //     toLearnWordsNumber.innerText = "0";
-    //   }
-    // }
+
     if (toLearnWordsNumber !== null && learnedWordsNumber !== null) {
       toLearnWordsNumber.innerText = myLearnListData.length;
       learnedWordsNumber.innerText = learnedData.length;
@@ -276,7 +268,51 @@ const learnedSentence = (pId) => {
 if (updateButton !== null) {
   updateButton.addEventListener("click", updateData);
 }
+/******************* */
 
+let mergedData;
+
+const fetchData2 = async () => {
+  try {
+    const response = await fetch("data.json");
+    const jsonData = await response.json();
+
+    console.log(getLocalStorage("allSentencesData"));
+    if (getLocalStorage("allSentencesData") === null) {
+      setLocalStorage("allSentencesData", jsonData);
+    }
+
+    // localStorage'daki veriyi al
+    let localStorageData = getLocalStorage("allSentencesData");
+
+    // localStorage'daki veri ile gelen JSON verisini birleştir
+    mergedData = localStorageData.map((item) => {
+      let localItem = jsonData.find((localItem) => localItem.id === item.id);
+      return localItem ? localItem : item;
+    });
+
+    // localStorage'a birleştirilmiş veriyi kaydet
+    setLocalStorage("allSentencesData", mergedData);
+
+    data = getLocalStorage("allSentencesData");
+    toLearnData = data && data.filter((sentence) => sentence.state === "empty");
+    learnedData = data && data.filter((sentence) => sentence.state === true);
+    myLearnListData =
+      data && data.filter((sentence) => sentence.state === false);
+
+    if (toLearnWordsNumber !== null && learnedWordsNumber !== null) {
+      toLearnWordsNumber.innerText = myLearnListData.length;
+      learnedWordsNumber.innerText = learnedData.length;
+    }
+
+    renderNewSentence(0);
+    renderNewSentenceLearned(0);
+  } catch (error) {
+    console.error("Hata:", error);
+  }
+};
+
+/**************** */
 function updateData() {
   Swal.fire({
     title: "Data Update Confirmation",
@@ -288,8 +324,8 @@ function updateData() {
   }).then((result) => {
     if (result.isConfirmed) {
       // Kullanıcı "Evet, Güncelle" dediğinde yapılacak işlemler
-      localStorage.clear();
-      fetchData();
+      // localStorage.clear();
+      fetchData2();
       setTimeout(() => {
         location.reload();
       }, 4000);

@@ -4,20 +4,29 @@ document.addEventListener("DOMContentLoaded", function () {
   var home = document.getElementById("home");
   var allSee = document.getElementById("see-all");
   var addNew = document.getElementById("add-new");
+  var auto = document.getElementById("auto");
 
   /** here is for netlfy **/
   if (filename === "") {
     allSee.classList.remove("active");
     addNew.classList.remove("active");
+    auto.classList.remove("active");
     home.classList.add("active");
   } else if (filename === "all-sentence") {
     home.classList.remove("active");
     addNew.classList.remove("active");
+    auto.classList.remove("active");
     allSee.classList.add("active");
   } else if (filename === "add-new") {
     home.classList.remove("active");
     allSee.classList.remove("active");
+    auto.classList.remove("active");
     addNew.classList.add("active");
+  } else if (filename === "auto") {
+    home.classList.remove("active");
+    allSee.classList.remove("active");
+    addNew.classList.remove("active");
+    auto.classList.add("active");
   }
 
   /* here is for localhost */

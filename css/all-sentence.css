@@ -35,7 +35,7 @@ button.add-to-learn {
   text-align: center;
   color: #f8f9fa;
   font-size: 0.8rem;
-  padding: 6px 24px;
+  padding: 6px 16px;
   border: 1px solid #49505796;
   border-radius: 8px;
   box-shadow: rgba(0, 0, 0, 0.16) 0px 3px 6px, rgba(0, 0, 0, 0.23) 0px 3px 6px;
@@ -45,4 +45,27 @@ button.add-to-learn {
 }
 button.forget i {
   color: #dc3546b0;
+}
+button.delete {
+  background: none;
+  border: 0px;
+  border-radius: 6px;
+  padding: 3px 8px;
+}
+button.delete i {
+  font-size: 1.3rem;
+  color: #db1f32;
+}
+
+button.add-to-learned:hover {
+  border: 1px solid #05b8388f;
+}
+button.forget:hover {
+  border: 1px solid #dc3546b0;
+}
+button.add-to-learn:hover {
+  border: 1px solid #1063df8f;
+}
+button.delete:hover {
+  border: 1px solid #db1f32;
 }

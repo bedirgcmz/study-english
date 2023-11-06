@@ -1,8 +1,8 @@
 const autoRenderContainer = document.getElementById("auto-render-container");
-// const getSentenceButton = document.getElementById("get-sentence");
-// const prevButton = document.getElementById("prev-sentence");
-// const nextButton = document.getElementById("next-sentence");
 const startButton = document.getElementById("start-button");
+const stopButton = document.getElementById("stop-button");
+const TRinput = document.getElementById("input-turkish");
+const ENinput = document.getElementById("input-english");
 
 let data;
 let toLearnData;
@@ -41,7 +41,6 @@ fetchData()
     learnedData = data && data.filter((sentence) => sentence.state === true);
     myLearnListData =
       data && data.filter((sentence) => sentence.state === false);
-    myLearnListData && console.log(myLearnListData);
   })
   .catch((error) => console.error("Hata:", error));
 
@@ -82,15 +81,12 @@ const autoRunOutOfWords = () => {
 function readTrText(pId) {
   const textToRead = document.getElementById(`TR${pId}`).textContent;
 
-  // // responsiveVoice.speak(textToRead, "Turkish Female");
-  console.log(textToRead);
   const synth = window.speechSynthesis;
   const utterThis = new SpeechSynthesisUtterance(textToRead);
 
   // Dil ayarını belirtin
-  utterThis.lang = "tr-TR";
-  utterThis.voiceURI = "yelda";
-  console.log(utterThis);
+  utterThis.lang = "tr";
+
   synth.speak(utterThis);
 }
 function readEnText(pId) {
@@ -98,49 +94,108 @@ function readEnText(pId) {
 
   const synth = window.speechSynthesis;
   const utterThis = new SpeechSynthesisUtterance(textToRead);
-  utterThis.lang = "sp";
-
-  console.log(utterThis);
 
   synth.speak(utterThis);
 }
 
-const autoRead = () => {
-  console.log("auto calisti");
+let autoReadInterval;
+let isAutoReading = false;
 
-  const autoReadProcess = () => {
-    console.log("interval calisti");
-    setTimeout(() => {
-      autoRenderNewSentence(autoNumber);
-    }, 300);
+const autoReadProcess = () => {
+  const trReadTime = Math.min(
+    12000,
+    1000 * Math.ceil(myLearnListData[autoNumber].sentence.length / 5)
+  );
+  const enReadTime = 5000;
 
-    setTimeout(() => {
-      const trButton = document.getElementById(
-        `readTR${myLearnListData[autoNumber].id}`
-      );
-      const enButton = document.getElementById(
-        `readEN${myLearnListData[autoNumber].id}`
-      );
+  autoRenderNewSentence(autoNumber);
+  const trButton = document.getElementById(
+    `readTR${myLearnListData[autoNumber].id}`
+  );
+  const enButton = document.getElementById(
+    `readEN${myLearnListData[autoNumber].id}`
+  );
 
-      setTimeout(() => {
-        trButton.click();
-      }, 1000);
+  setTimeout(() => {
+    trButton.click();
+  }, 1000);
 
-      setTimeout(() => {
-        enButton.click();
-      }, 6000);
-    }, 2000);
+  setTimeout(() => {
+    enButton.click();
+  }, trReadTime + 1000);
 
-    setTimeout(() => {
-      if (autoNumber < myLearnListData.length) {
-        autoNumber++;
-      } else {
-        autoNumber = 0;
+  setTimeout(() => {
+    if (autoNumber < myLearnListData.length - 1) {
+      autoNumber++;
+      if (isAutoReading) {
+        autoReadProcess(); // Yeni işlemi başlat
       }
-    }, 10000);
-  };
-  autoReadProcess();
-  setInterval(autoReadProcess, 11000);
+    } else {
+      autoNumber = 0;
+      if (isAutoReading) {
+        autoReadProcess(); // Yeni işlemi başlat
+      }
+    }
+  }, trReadTime + enReadTime + 4000);
 };
 
-startButton.addEventListener("click", autoRead);
+const startAutoRead = () => {
+  isAutoReading = true;
+  autoReadProcess();
+};
+
+const stopAutoRead = () => {
+  isAutoReading = false;
+};
+
+startButton.addEventListener("click", startAutoRead);
+stopButton.addEventListener("click", stopAutoRead);
+
+// // let autoReadInterval;
+
+// // const autoReadProcess = () => {
+// //   const trReadTime =
+// //     1000 * Math.ceil(myLearnListData[autoNumber].sentence.length / 5);
+// //   const enReadTime = 5000;
+
+// //   setTimeout(() => {
+// //     autoRenderNewSentence(autoNumber);
+// //   }, 300);
+
+// //   setTimeout(() => {
+// //     const trButton = document.getElementById(
+// //       `readTR${myLearnListData[autoNumber].id}`
+// //     );
+// //     const enButton = document.getElementById(
+// //       `readEN${myLearnListData[autoNumber].id}`
+// //     );
+
+// //     setTimeout(() => {
+// //       trButton.click();
+// //     }, 1000);
+
+// //     setTimeout(() => {
+// //       enButton.click();
+// //     }, trReadTime + 1000);
+// //   }, 2000);
+
+// //   setTimeout(() => {
+// //     if (autoNumber < myLearnListData.length) {
+// //       autoNumber++;
+// //     } else {
+// //       autoNumber = 0;
+// //     }
+// //   }, trReadTime + enReadTime + 4000);
+// // };
+
+// // const autoRead = () => {
+// //   autoReadProcess();
+// //   autoReadInterval = setInterval(autoReadProcess, 11000);
+// // };
+
+// // const stopAutoRead = () => {
+// //   clearInterval(autoReadInterval);
+// // };
+
+// // startButton.addEventListener("click", autoRead);
+// // stopButton.addEventListener("click", stopAutoRead);
