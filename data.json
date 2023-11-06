@@ -237,7 +237,7 @@
     "translate": "I won't work <w class='green'>anymore</w>",
     "key_words": ["anymore"],
     "language": "english",
-    "state": false
+    "state": "empty"
   },
   {
     "id": 30,
@@ -245,6 +245,6 @@
     "translate": "<w class='purple'>How long</w> will the movie <w class='yellow'>last.</w>",
     "key_words": ["last", "how long"],
     "language": "english",
-    "state": false
+    "state": "empty"
   }
 ]
