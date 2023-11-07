@@ -21,7 +21,6 @@ main {
 }
 .add-new-sen-button {
   width: 160px;
-  margin-left: calc(50% - 80px);
   border: 0px solid #212529;
   padding: 4px 6px;
   border-radius: 6px;

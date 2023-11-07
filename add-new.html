@@ -76,46 +76,55 @@
             unutmayin!
           </p>
           <div class="input-group d-flex flex-column text-white">
-            <label for="TR">Türkçe Cümle</label>
-            <textarea
-              rows="2"
-              id="input-turkish"
-              type="text"
-              name="TR"
-            ></textarea>
-            <label class="mt-3" for="EN">İngilizce Cümle</label>
-            <textarea
-              rows="2"
-              id="input-english"
-              type="text"
-              name="EN"
-            ></textarea>
-            <label class="mt-3" for="key-word">Hedef Kelimeler</label>
-            <div class="key-word-inputs d-flex justify-content-between">
-              <input
-                id="input-key-word-1"
-                class=""
+            <form action="">
+              <label for="TR">Türkçe Cümle</label>
+              <textarea
+                required
+                rows="2"
+                id="input-turkish"
                 type="text"
-                name="key-word-1"
-              />
-              <input
-                id="input-key-word-2"
-                class="ms-2"
+                name="TR"
+              ></textarea>
+              <label class="mt-3" for="EN">İngilizce Cümle</label>
+              <textarea
+                required
+                rows="2"
+                id="input-english"
                 type="text"
-                name="key-word-2"
-              />
-              <input
-                id="input-key-word-3"
-                class="ms-2"
-                type="text"
-                name="key-word-3"
-              />
-            </div>
+                name="EN"
+              ></textarea>
+              <label class="mt-3" for="key-word">Hedef Kelimeler</label>
+              <div class="key-word-inputs d-flex justify-content-between">
+                <input
+                  required
+                  id="input-key-word-1"
+                  class=""
+                  type="text"
+                  name="key-word-1"
+                />
+                <input
+                  id="input-key-word-2"
+                  class="ms-2"
+                  type="text"
+                  name="key-word-2"
+                />
+                <input
+                  id="input-key-word-3"
+                  class="ms-2"
+                  type="text"
+                  name="key-word-3"
+                />
+              </div>
+              <button
+                type="submit"
+                class="add-new-sen-button mt-4"
+                onclick="getSentences()"
+              >
+                Yeni Cümleyi Ekle
+              </button>
+            </form>
           </div>
         </section>
-        <button class="add-new-sen-button mt-4" onclick="getSentences()">
-          Yeni Cümleyi Ekle
-        </button>
         <section class="added-sentence-render-here">
           <p id="added-info" class="text-secondary"></p>
           <div id="TR-sentences"></div>

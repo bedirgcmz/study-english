@@ -50,11 +50,11 @@ const autoRenderNewSentence = (pNumber) => {
       (autoRenderContainer.innerHTML = `
           <div class="sentence-container">
               <div class="sentences-and-icon my-1">                
-                <div class="d-flex flex-column align-items-center justfy-content-end">
+                <div class="d-flex flex-column align-items-start justfy-content-end">
                   <i id="readTR${myLearnListData[pNumber].id}" onclick="readTrText(${myLearnListData[pNumber].id})" class="d-none fa-solid fa-volume-high read-icon p-2 mx-1 mb-2"></i>
-                  <p id="TR${myLearnListData[pNumber].id}">${myLearnListData[pNumber].sentence}</p>
+                  <p id="TR${myLearnListData[pNumber].id}" class="text-start">${myLearnListData[pNumber].sentence}</p>
                   <i id="readEN${myLearnListData[pNumber].id}" onclick="readEnText(${myLearnListData[pNumber].id})" class="d-none fa-solid fa-volume-high read-icon p-2 mx-1 mb-2"></i>
-                  <p id="EN${myLearnListData[pNumber].id}" class="px-2 py-3">${myLearnListData[pNumber].translate}</p>
+                  <p id="EN${myLearnListData[pNumber].id}" class="text-start">${myLearnListData[pNumber].translate}</p>
                  </div>
               </div>
             </div>
@@ -77,7 +77,7 @@ const autoRunOutOfWords = () => {
   }
 };
 
-/* Read text function */
+/*Turksih Read text function */
 function readTrText(pId) {
   const textToRead = document.getElementById(`TR${pId}`).textContent;
 
@@ -85,10 +85,12 @@ function readTrText(pId) {
   const utterThis = new SpeechSynthesisUtterance(textToRead);
 
   // Dil ayarını belirtin
-  utterThis.lang = "tr";
+  utterThis.lang = "tr-TR";
 
   synth.speak(utterThis);
 }
+
+/*English Read text function */
 function readEnText(pId) {
   const textToRead = document.getElementById(`EN${pId}`).textContent;
 
@@ -98,13 +100,14 @@ function readEnText(pId) {
   synth.speak(utterThis);
 }
 
+//Otomatik okuma fonksiyonu
 let autoReadInterval;
 let isAutoReading = false;
 
 const autoReadProcess = () => {
   const trReadTime = Math.min(
     12000,
-    1000 * Math.ceil(myLearnListData[autoNumber].sentence.length / 5)
+    600 * Math.ceil(myLearnListData[autoNumber].sentence.length / 5)
   );
   const enReadTime = 5000;
 
@@ -136,7 +139,7 @@ const autoReadProcess = () => {
         autoReadProcess(); // Yeni işlemi başlat
       }
     }
-  }, trReadTime + enReadTime + 4000);
+  }, trReadTime + enReadTime + 2000);
 };
 
 const startAutoRead = () => {
@@ -146,56 +149,17 @@ const startAutoRead = () => {
 
 const stopAutoRead = () => {
   isAutoReading = false;
+  const infoFinish = () => {
+    Swal.fire({
+      title: "Okey",
+      text: "After this sentence the automatic mode will be stopped. Press the 'Start' button to start again.",
+      icon: "info",
+      showCancelButton: false,
+      confirmButtonText: "Ok, I understood",
+    });
+  };
+  infoFinish();
 };
 
 startButton.addEventListener("click", startAutoRead);
 stopButton.addEventListener("click", stopAutoRead);
-
-// // let autoReadInterval;
-
-// // const autoReadProcess = () => {
-// //   const trReadTime =
-// //     1000 * Math.ceil(myLearnListData[autoNumber].sentence.length / 5);
-// //   const enReadTime = 5000;
-
-// //   setTimeout(() => {
-// //     autoRenderNewSentence(autoNumber);
-// //   }, 300);
-
-// //   setTimeout(() => {
-// //     const trButton = document.getElementById(
-// //       `readTR${myLearnListData[autoNumber].id}`
-// //     );
-// //     const enButton = document.getElementById(
-// //       `readEN${myLearnListData[autoNumber].id}`
-// //     );
-
-// //     setTimeout(() => {
-// //       trButton.click();
-// //     }, 1000);
-
-// //     setTimeout(() => {
-// //       enButton.click();
-// //     }, trReadTime + 1000);
-// //   }, 2000);
-
-// //   setTimeout(() => {
-// //     if (autoNumber < myLearnListData.length) {
-// //       autoNumber++;
-// //     } else {
-// //       autoNumber = 0;
-// //     }
-// //   }, trReadTime + enReadTime + 4000);
-// // };
-
-// // const autoRead = () => {
-// //   autoReadProcess();
-// //   autoReadInterval = setInterval(autoReadProcess, 11000);
-// // };
-
-// // const stopAutoRead = () => {
-// //   clearInterval(autoReadInterval);
-// // };
-
-// // startButton.addEventListener("click", autoRead);
-// // stopButton.addEventListener("click", stopAutoRead);

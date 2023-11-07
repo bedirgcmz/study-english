@@ -1,7 +1,7 @@
 [
   {
     "id": 0,
-    "sentence": "<W class='brown'>Ek olarak</W>, ben bir takim oyuncusuyum da",
+    "sentence": "<W class='brown'>Ek olarak</W>, ben bir takım oyuncusuyum da",
     "translate": "<W class= 'brown'>Additionly</W>, I am also a team player!",
     "key_words": ["additionly"],
     "language": "english",
