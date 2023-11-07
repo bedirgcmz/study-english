@@ -33,7 +33,7 @@ fetchData()
     if (localStorage.getItem("allSentencesData") === null) {
       jsonData && setLocalStorage("allSentencesData", jsonData);
     }
-    // setLocalStorage("allSentencesData", jsonData);
+
     data = getLocalStorage("allSentencesData");
     toLearnData = data && data.filter((sentence) => sentence.state === "empty");
     learnedData = data && data.filter((sentence) => sentence.state === true);
@@ -47,14 +47,9 @@ fetchData()
 
     /* Page loadind firstly add a sentence */
     renderNewSentence(0);
-    /**when loading page */
     renderNewSentenceLearned(0);
   })
   .catch((error) => console.error("Hata:", error));
-
-// if (toLearnData) {
-
-// }
 
 const renderNewSentence = (number) => {
   //totalSentences elemti varsa lenghtine gore text yazdirma
@@ -270,47 +265,73 @@ if (updateButton !== null) {
 }
 /******************* */
 
-let mergedData;
+// // // let mergedData;
 
-const fetchData2 = async () => {
+// // // const fetchData2 = async () => {
+// // //   try {
+// // //     const response = await fetch("data.json");
+// // //     const jsonData = await response.json();
+
+// // //     if (getLocalStorage("allSentencesData") === null) {
+// // //       setLocalStorage("allSentencesData", jsonData);
+// // //     }
+
+// // //     // localStorage'daki veriyi al
+// // //     let localStorageData = getLocalStorage("allSentencesData");
+
+// // //     // localStorage'daki veri ile gelen JSON verisini birleştir
+// // //     mergedData = localStorageData.map((item) => {
+// // //       let localItem = jsonData.find((localItem) => localItem.id === item.id);
+// // //       return localItem ? localItem : item;
+// // //     });
+
+// // //     // localStorage'a birleştirilmiş veriyi kaydet
+// // //     setLocalStorage("allSentencesData", mergedData);
+
+// // //     data = getLocalStorage("allSentencesData");
+// // //     toLearnData = data && data.filter((sentence) => sentence.state === "empty");
+// // //     learnedData = data && data.filter((sentence) => sentence.state === true);
+// // //     myLearnListData =
+// // //       data && data.filter((sentence) => sentence.state === false);
+
+// // //     if (toLearnWordsNumber !== null && learnedWordsNumber !== null) {
+// // //       toLearnWordsNumber.innerText = myLearnListData.length;
+// // //       learnedWordsNumber.innerText = learnedData.length;
+// // //     }
+
+// // //     renderNewSentence(0);
+// // //     renderNewSentenceLearned(0);
+// // //   } catch (error) {
+// // //     console.error("Hata:", error);
+// // //   }
+// // // };
+
+//yeni fetch start
+async function updateFetchData() {
   try {
+    // Veriyi asenkron olarak al
     const response = await fetch("data.json");
     const jsonData = await response.json();
 
-    console.log(getLocalStorage("allSentencesData"));
-    if (getLocalStorage("allSentencesData") === null) {
-      setLocalStorage("allSentencesData", jsonData);
-    }
+    // LocalStorage'dan mevcut veriyi al
+    const localData = getLocalStorage("allSentencesData") || [];
 
-    // localStorage'daki veriyi al
-    let localStorageData = getLocalStorage("allSentencesData");
+    // Yeni gelen veriyi kontrol et
+    const updatedData = [...localData, ...jsonData];
+    const uniqueData = [...new Set(updatedData.map(JSON.stringify))].map(
+      JSON.parse
+    );
 
-    // localStorage'daki veri ile gelen JSON verisini birleştir
-    mergedData = localStorageData.map((item) => {
-      let localItem = jsonData.find((localItem) => localItem.id === item.id);
-      return localItem ? localItem : item;
-    });
+    // Yeni veriyi LocalStorage'e kaydet
+    setLocalStorage("allSentencesData", uniqueData);
 
-    // localStorage'a birleştirilmiş veriyi kaydet
-    setLocalStorage("allSentencesData", mergedData);
-
-    data = getLocalStorage("allSentencesData");
-    toLearnData = data && data.filter((sentence) => sentence.state === "empty");
-    learnedData = data && data.filter((sentence) => sentence.state === true);
-    myLearnListData =
-      data && data.filter((sentence) => sentence.state === false);
-
-    if (toLearnWordsNumber !== null && learnedWordsNumber !== null) {
-      toLearnWordsNumber.innerText = myLearnListData.length;
-      learnedWordsNumber.innerText = learnedData.length;
-    }
-
-    renderNewSentence(0);
-    renderNewSentenceLearned(0);
+    // return uniqueData;
   } catch (error) {
-    console.error("Hata:", error);
+    console.error("Hata oluştu:", error);
   }
-};
+}
+
+//yeni fetch finish
 
 /**************** */
 function updateData() {
@@ -324,8 +345,7 @@ function updateData() {
   }).then((result) => {
     if (result.isConfirmed) {
       // Kullanıcı "Evet, Güncelle" dediğinde yapılacak işlemler
-      // localStorage.clear();
-      fetchData2();
+      updateFetchData();
       setTimeout(() => {
         location.reload();
       }, 4000);
