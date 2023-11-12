@@ -54,6 +54,17 @@
       </nav>
     </header>
     <main>
+      <section id="filters-all-sentences">
+        <div>
+          <label for="filterSelect">Select Filter:</label>
+          <select id="filterSelect" onchange="applyFilter()">
+            <option class="p-3" value="all">All Sentences</option>
+            <option class="p-3 empty" value="empty">Unlearned Sentences</option>
+            <option class="p-3 true" value="true">Learned Sentence</option>
+            <option class="p-3 false" value="false">Learning Sentence</option>
+          </select>
+        </div>
+      </section>
       <section id="all-sentences-render" class="container">
         <!-- <div class="content">
           <p class="sentence"><b>TR:</b></p>

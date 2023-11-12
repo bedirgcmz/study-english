@@ -40,6 +40,7 @@ const getLocalStorage = (pStringKey) => {
 //Sayfa acildiginda local deki tum datanin render edilmesi
 const fromLocalStrangeData = getLocalStorage("allSentencesData");
 allSentencesRender.innerHTML = fromLocalStrangeData
+  .reverse()
   .map((sentence) => renderAllSentences(sentence))
   .join("");
 
@@ -66,6 +67,7 @@ const addToLearningList = (pId) => {
   // Yeni data'yı localStorage'a atmak
   setLocalStorage("allSentencesData", updatedData);
   allSentencesRender.innerHTML = updatedData
+    .reverse()
     .map((sentence) => renderAllSentences(sentence))
     .join("");
 };
@@ -95,6 +97,7 @@ const learnedSentenceInAllSentences = (pId) => {
   // Yeni data'yı localStorage'a atmak
   setLocalStorage("allSentencesData", updatedData);
   allSentencesRender.innerHTML = updatedData
+    .reverse()
     .map((sentence) => renderAllSentences(sentence))
     .join("");
 };
@@ -122,6 +125,7 @@ const forgotSentences = (pId) => {
   // Yeni data'yı localStorage'a atmak
   setLocalStorage("allSentencesData", updatedData);
   allSentencesRender.innerHTML = updatedData
+    .reverse()
     .map((sentence) => renderAllSentences(sentence))
     .join("");
 };
@@ -132,6 +136,7 @@ const deleteSentence = (pId) => {
   setLocalStorage("allSentencesData", newData);
 
   allSentencesRender.innerHTML = newData
+    .reverse()
     .map((sentence) => renderAllSentences(sentence))
     .join("");
 };
@@ -153,4 +158,37 @@ function doYouWantToDelete(pId) {
       Swal.fire("Deletion Canceled", "The sentence was saved", "info");
     }
   });
+}
+
+function applyFilter() {
+  const filterSelect = document.getElementById("filterSelect");
+  const selectedFilter = filterSelect.value;
+  const fromLocalStrangeData = getLocalStorage("allSentencesData");
+  let filteredData = [];
+
+  switch (selectedFilter) {
+    case "all":
+      filteredData = fromLocalStrangeData;
+      break;
+    case "empty":
+      filteredData = fromLocalStrangeData.filter(
+        (item) => item.state === "empty"
+      );
+      break;
+    case "true":
+      filteredData = fromLocalStrangeData.filter((item) => item.state === true);
+      break;
+    case "false":
+      filteredData = fromLocalStrangeData.filter(
+        (item) => item.state === false
+      );
+      break;
+    default:
+      break;
+  }
+  allSentencesRender.innerHTML = filteredData
+    .reverse()
+    .map((sentence) => renderAllSentences(sentence))
+    .join("");
+  console.log(filteredData);
 }

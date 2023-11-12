@@ -69,3 +69,30 @@ button.add-to-learn:hover {
 button.delete:hover {
   border: 1px solid #db1f32;
 }
+
+#filters-all-sentences div {
+  text-align: center;
+  margin: 20px auto;
+  color: #fff;
+  font-size: 1.2rem;
+  padding: 9px 12px;
+  width: 400px;
+  box-shadow: rgb(0 0 0 / 55%) 0px 3px 8px;
+  border-radius: 6px;
+}
+#filterSelect {
+  border-radius: 6px;
+  padding: 4px 8px;
+  color: #ffc107;
+  background-color: #212529;
+  border: none;
+}
+#filterSelect option[value="empty"] {
+  color: rgb(233 88 88);
+}
+#filterSelect option[value="true"] {
+  color: rgb(92 233 129);
+}
+#filterSelect option[value="false"] {
+  color: rgb(93 130 233);
+}
