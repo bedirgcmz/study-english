@@ -29,3 +29,29 @@
   border: 2px solid rgb(39, 129, 213);
   background: none;
 }
+
+#filters-all-sentences-auto div {
+  text-align: center;
+  margin: 0 auto 20px auto;
+  color: #fff;
+  padding: 9px 12px;
+  /* width: 400px;
+  box-shadow: rgb(0 0 0 / 55%) 0px 3px 8px; */
+  border-radius: 6px;
+}
+#filterSelectAuto {
+  border-radius: 6px;
+  padding: 4px 8px;
+  color: #ffc107;
+  background-color: #212529;
+  border: none;
+}
+#filterSelectAuto option[value="empty"] {
+  color: rgb(233 88 88);
+}
+#filterSelectAuto option[value="true"] {
+  color: rgb(92 233 129);
+}
+#filterSelectAuto option[value="false"] {
+  color: rgb(93 130 233);
+}

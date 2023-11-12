@@ -66,6 +66,19 @@
             alt=""
           />
         </div>
+        <section id="filters-all-sentences-auto">
+          <div>
+            <label class="mb-2" for="filterSelectAuto"
+              >Choose the list you want to work on:</label
+            >
+            <select id="filterSelectAuto" onchange="applyFilterAuto()">
+              <option class="p-3" value="false">Learning Sentences</option>
+              <option class="p-3" value="all">All Sentences</option>
+              <option class="p-3" value="empty">Unlearned Sentences</option>
+              <option class="p-3" value="true">Learned Sentences</option>
+            </select>
+          </div>
+        </section>
         <div
           class="start-stop-button-container d-flex justify-content-between mt-3"
         >

@@ -59,9 +59,9 @@
           <label for="filterSelect">Select Filter:</label>
           <select id="filterSelect" onchange="applyFilter()">
             <option class="p-3" value="all">All Sentences</option>
-            <option class="p-3 empty" value="empty">Unlearned Sentences</option>
-            <option class="p-3 true" value="true">Learned Sentence</option>
-            <option class="p-3 false" value="false">Learning Sentence</option>
+            <option class="p-3" value="empty">Unlearned Sentences</option>
+            <option class="p-3" value="true">Learned Sentences</option>
+            <option class="p-3" value="false">Learning Sentences</option>
           </select>
         </div>
       </section>
@@ -72,6 +72,9 @@
           <p class="key-words"><b>Target Words:</b></p>
         </div> -->
       </section>
+      <button id="go-to-top" onclick="scrollToTop()">
+        <i class="fa-solid fa-angles-up px-1 py-2"></i>
+      </button>
     </main>
     <footer>
       <p style="font-size: 12px">&copy; Bedir Gocmez</p>

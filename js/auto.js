@@ -37,8 +37,8 @@ fetchData()
     }
 
     data = getLocalStorage("allSentencesData");
-    toLearnData = data && data.filter((sentence) => sentence.state === "empty");
-    learnedData = data && data.filter((sentence) => sentence.state === true);
+    // toLearnData = data && data.filter((sentence) => sentence.state === "empty");
+    // learnedData = data && data.filter((sentence) => sentence.state === true);
     myLearnListData =
       data && data.filter((sentence) => sentence.state === false);
   })
@@ -152,11 +152,17 @@ const stopAutoRead = () => {
   isAutoReading = false;
   const infoFinish = () => {
     Swal.fire({
-      title: "Okey",
-      text: "After this sentence the automatic mode will be stopped. Press the 'Start' button to start again.",
+      title: "Are You Sure!",
+      text: "Should automatic listening mode be turned off?",
       icon: "info",
-      showCancelButton: false,
-      confirmButtonText: "Ok, I understood",
+      showCancelButton: true,
+      confirmButtonText: "Yes",
+      cancelButtonText: "No",
+    }).then((result) => {
+      if (result.isConfirmed) {
+        // Kullanıcı "Evet" dediğinde yapılacak işlemler
+        location.reload();
+      }
     });
   };
   infoFinish();
@@ -164,3 +170,38 @@ const stopAutoRead = () => {
 
 startButton.addEventListener("click", startAutoRead);
 stopButton.addEventListener("click", stopAutoRead);
+
+function applyFilterAuto() {
+  const filterSelect = document.getElementById("filterSelectAuto");
+  const selectedFilter = filterSelect.value;
+  const fromLocalStrangeData = getLocalStorage("allSentencesData");
+  // let filteredData = [];
+
+  switch (selectedFilter) {
+    case "all":
+      myLearnListData = fromLocalStrangeData;
+      break;
+    case "empty":
+      myLearnListData = fromLocalStrangeData.filter(
+        (item) => item.state === "empty"
+      );
+      break;
+    case "true":
+      myLearnListData = fromLocalStrangeData.filter(
+        (item) => item.state === true
+      );
+      break;
+    case "false":
+      myLearnListData = fromLocalStrangeData.filter(
+        (item) => item.state === false
+      );
+      break;
+    default:
+      break;
+  }
+  // allSentencesRender.innerHTML = filteredData
+  //   .reverse()
+  //   .map((sentence) => renderAllSentences(sentence))
+  //   .join("");
+  console.log(myLearnListData);
+}
