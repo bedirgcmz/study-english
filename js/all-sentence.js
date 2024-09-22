@@ -23,6 +23,10 @@ const renderAllSentences = (pSentence) => {
       })"><i class="fa-solid fa-trash-can"></i></button>
       
     </div>
+    <div class="edit-icon" onClick="editSentence(${
+      pSentence.id
+    })"> <i class="fa-solid fa-pen-to-square"></i></div>
+    
     </div> <br/>
     `;
 };
@@ -171,17 +175,13 @@ function applyFilter() {
       filteredData = fromLocalStrangeData;
       break;
     case "empty":
-      filteredData = fromLocalStrangeData.filter(
-        (item) => item.state === "empty"
-      );
+      filteredData = fromLocalStrangeData.filter((item) => item.state === "empty");
       break;
     case "true":
       filteredData = fromLocalStrangeData.filter((item) => item.state === true);
       break;
     case "false":
-      filteredData = fromLocalStrangeData.filter(
-        (item) => item.state === false
-      );
+      filteredData = fromLocalStrangeData.filter((item) => item.state === false);
       break;
     default:
       break;
@@ -198,3 +198,71 @@ function scrollToTop() {
     behavior: "smooth",
   });
 }
+
+// MODAL ve edit islemleri
+let currentEditId = null; // Düzenlenen cümlenin ID'sini tutmak için
+
+// Modal'ı açan fonksiyon
+function editSentence(pId) {
+  const fromLocalStrangeData = getLocalStorage("allSentencesData");
+  const sentenceToEdit = fromLocalStrangeData.find((sentence) => sentence.id === pId);
+
+  // Modal içindeki inputları doldur
+  document.getElementById("sentenceInput").value = sentenceToEdit.sentence;
+  document.getElementById("translateInput").value = sentenceToEdit.translate;
+  document.getElementById("keyWordsInput").value = sentenceToEdit.key_words.join(", ");
+
+  // Modal'ı aç
+  const modal = document.getElementById("editModal");
+  modal.style.display = "block";
+
+  // Düzenlenen cümlenin ID'sini sakla
+  currentEditId = pId;
+}
+
+// Modal'ı kapatma işlevi
+const modal = document.getElementById("editModal");
+const closeModal = document.getElementsByClassName("close")[0];
+closeModal.onclick = function () {
+  modal.style.display = "none";
+};
+
+// Modal dışında bir yere tıklanırsa kapat
+window.onclick = function (event) {
+  if (event.target == modal) {
+    modal.style.display = "none";
+  }
+};
+
+// Düzenlemeyi kaydetme fonksiyonu
+document.getElementById("saveEditBtn").addEventListener("click", function () {
+  const fromLocalStrangeData = getLocalStorage("allSentencesData");
+
+  // İlgili cümleyi bul
+  const updatedData = fromLocalStrangeData.map((sentence) => {
+    if (sentence.id === currentEditId) {
+      return {
+        ...sentence,
+        sentence: document.getElementById("sentenceInput").value,
+        translate: document.getElementById("translateInput").value,
+        key_words: document
+          .getElementById("keyWordsInput")
+          .value.split(",")
+          .map((word) => word.trim()),
+      };
+    }
+    return sentence;
+  });
+
+  // Güncellenmiş veriyi localStorage'a kaydet
+  setLocalStorage("allSentencesData", updatedData);
+
+  // Sayfayı yeniden render et
+  allSentencesRender.innerHTML = updatedData
+    .reverse()
+    .map((sentence) => renderAllSentences(sentence))
+    .join("");
+
+  // Modal'ı kapat
+  modal.style.display = "none";
+});
