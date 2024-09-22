@@ -197,8 +197,8 @@ hr {
 #update-button {
   background-color: #6c000a;
   color: #6c757d;
-  padding: 2px 8px;
-  width: 140px;
+  padding: 6px 8px;
+  width: 150px;
   margin: auto;
   border-radius: 8px;
 }
@@ -207,7 +207,7 @@ hr {
   color: #9a3b45;
 }
 
-.data-indir {
+#data-indir {
   padding: 4px 7px;
   background-color: #ffc008;
   border: none;
