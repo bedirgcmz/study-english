@@ -3,9 +3,7 @@ const renderContainer = document.getElementById("render-container");
 const prevButton = document.getElementById("prev-sentence");
 const nextButton = document.getElementById("next-sentence");
 const totalSentences = document.getElementById("total-sentences");
-const totalSentencesLearned = document.getElementById(
-  "total-sentences-learned"
-);
+const totalSentencesLearned = document.getElementById("total-sentences-learned");
 const toLearnWordsNumber = document.getElementById("to-learn-words-number");
 const learnedWordsNumber = document.getElementById("learned-words-number");
 const updateButton = document.getElementById("update-button");
@@ -37,8 +35,7 @@ fetchData()
     data = getLocalStorage("allSentencesData");
     toLearnData = data && data.filter((sentence) => sentence.state === "empty");
     learnedData = data && data.filter((sentence) => sentence.state === true);
-    myLearnListData =
-      data && data.filter((sentence) => sentence.state === false);
+    myLearnListData = data && data.filter((sentence) => sentence.state === false);
 
     if (toLearnWordsNumber !== null && learnedWordsNumber !== null) {
       toLearnWordsNumber.innerText = myLearnListData.length;
@@ -104,10 +101,7 @@ const openTranslate = (pId) => {
   const openIcon = document.getElementById(`open${pId}`);
   const closeIcon = document.getElementById(`close${pId}`);
 
-  if (
-    targetElement.style.display === "none" ||
-    targetElement.style.display === ""
-  ) {
+  if (targetElement.style.display === "none" || targetElement.style.display === "") {
     targetElement.style.display = "block";
     openIcon.classList.add("d-none");
     closeIcon.classList.remove("d-none");
@@ -277,9 +271,7 @@ async function updateFetchData() {
 
     // Yeni gelen veriyi kontrol et
     const updatedData = [...localData, ...jsonData];
-    const uniqueData = [...new Set(updatedData.map(JSON.stringify))].map(
-      JSON.parse
-    );
+    const uniqueData = [...new Set(updatedData.map(JSON.stringify))].map(JSON.parse);
 
     // Yeni veriyi LocalStorage'e kaydet
     setLocalStorage("allSentencesData", uniqueData);
@@ -339,3 +331,35 @@ setTimeout(() => {
     welcome();
   }
 }, 4000);
+
+const aba = (...pArray) => {
+  return pArray;
+};
+
+const abc = "Bedir";
+const ab = "Bey";
+
+console.log(aba(abc, ab));
+
+// Data indirme fonksiyonu
+function downloadData() {
+  const data = localStorage.getItem("allSentencesData");
+
+  if (data) {
+    const dataStr = JSON.stringify(JSON.parse(data), null, 2);
+    const blob = new Blob([dataStr], { type: "application/json" });
+    const url = URL.createObjectURL(blob);
+    const a = document.createElement("a");
+    a.href = url;
+    a.download = "user_data.json"; // İndirilecek dosya adı
+    document.body.appendChild(a);
+    a.click();
+    document.body.removeChild(a);
+  } else {
+    console.log("No data found in localStorage.");
+  }
+}
+
+// Buton'a event ekleme
+const downloadButton = document.getElementById("data-indir");
+downloadButton.addEventListener("click", downloadData);

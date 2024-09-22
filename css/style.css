@@ -206,3 +206,11 @@ hr {
 .warning-update {
   color: #9a3b45;
 }
+
+.data-indir {
+  padding: 4px 7px;
+  background-color: #ffc008;
+  border: none;
+  border-radius: 4px;
+  color: #515355;
+}
